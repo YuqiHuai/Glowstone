@@ -95,7 +95,7 @@ public class GlowBanList extends JsonListFile implements BanList {
     protected void save() {
         entries.clear();
         entries.addAll(entryMap.values());
-        super.save();
+//        super.save();
     }
 
     /**
