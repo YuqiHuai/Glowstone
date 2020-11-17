@@ -21,7 +21,7 @@ public class BossBarMessage implements Message {
     private final byte flags;
 
 
-    private BossBarMessage(UUID uuid, Action action, TextMessage title, float health, Color color, Division division, byte flags) {
+    public BossBarMessage(UUID uuid, Action action, TextMessage title, float health, Color color, Division division, byte flags) {
     	this.uuid = uuid;
     	this.action = action;
     	this.title = title;
