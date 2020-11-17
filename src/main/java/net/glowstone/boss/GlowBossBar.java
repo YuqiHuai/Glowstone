@@ -76,7 +76,11 @@ public class GlowBossBar implements BossBar {
         }
     }
 
-    @Override
+    private UUID getUniqueId() {
+		return this.uniqueId;
+	}
+
+	@Override
     public void setColor(BarColor color) {
         Preconditions.checkNotNull(color);
         this.color = color;

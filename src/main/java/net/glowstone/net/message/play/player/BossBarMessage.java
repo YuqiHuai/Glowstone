@@ -21,6 +21,16 @@ public class BossBarMessage implements Message {
     private final byte flags;
 
 
+    private BossBarMessage(UUID uuid, Action action, TextMessage title, float health, Color color, Division division, byte flags) {
+    	this.uuid = uuid;
+    	this.action = action;
+    	this.title = title;
+    	this.health = health;
+    	this.color = color;
+    	this.division = division;
+    	this.flags = flags;
+    }
+    
     //For action 1, remove
     public BossBarMessage(UUID uuid, Action action) {
         this(uuid, action, null, 0f, null, null, (byte) 0);
