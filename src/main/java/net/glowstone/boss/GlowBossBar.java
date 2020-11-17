@@ -253,4 +253,34 @@ public class GlowBossBar implements BossBar {
     public String toString() {
         return String.format("[GlowBossBar %s named %s]", getUniqueId(), getTitle());
     }
+
+	@Override
+	public String getTitle() {
+		// TODO Auto-generated method stub
+		return this.title;
+	}
+
+	@Override
+	public BarColor getColor() {
+		// TODO Auto-generated method stub
+		return this.color;
+	}
+
+	@Override
+	public BarStyle getStyle() {
+		// TODO Auto-generated method stub
+		return this.style;
+	}
+
+	@Override
+	public double getProgress() {
+		// TODO Auto-generated method stub
+		return this.progress;
+	}
+
+	@Override
+	public boolean isVisible() {
+		// TODO Auto-generated method stub
+		return this.visible;
+	}
 }
