@@ -153,7 +153,7 @@ public abstract class BlockLiquid extends BlockType {
         }
     }
 
-    private boolean calculateTarget(GlowBlock target, BlockFace direction, boolean flow) {
+    public boolean calculateTarget(GlowBlock target, BlockFace direction, boolean flow) {
         // Don't flow inside unloaded chunks
         if (!target.getChunk().isLoaded()) {
             return false;
@@ -178,7 +178,7 @@ public abstract class BlockLiquid extends BlockType {
         return false;
     }
 
-    private void flow(GlowBlock source, BlockFace direction) {
+    public void flow(GlowBlock source, BlockFace direction) {
         // if we're not going down
         BlockFromToEvent fromToEvent = new BlockFromToEvent(source, direction);
         if (fromToEvent.isCancelled()) {
@@ -205,7 +205,7 @@ public abstract class BlockLiquid extends BlockType {
         toBlock.getWorld().requestPulse(toBlock);
     }
 
-    private void mix(GlowBlock target, BlockFace direction, Material flowingMaterial,
+    public void mix(GlowBlock target, BlockFace direction, Material flowingMaterial,
         Material targetMaterial) {
         if (flowingMaterial == Material.WATER && targetMaterial == Material.LAVA) {
             if (target.getState().getRawData() == STRENGTH_SOURCE) {
