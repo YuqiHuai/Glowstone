@@ -21,3 +21,5 @@ dependency-reduced-pom.xml
 .db
 .DS_Store
 .vscode
+/infer-out/racerd/*
+/infer-out/specs/*

@@ -1,0 +1,2897 @@
+Found 332 issues
+
+src/test/java/net/glowstone/entity/objects/GlowItemFrameTest.java:8: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `GlowItemFrame(...)` at line 8.
+  6.   public class GlowItemFrameTest extends GlowHangingEntityTest<GlowItemFrame> {
+  7.       public GlowItemFrameTest() {
+  8. >         super(location -> new GlowItemFrame(null, location, BlockFace.SOUTH));
+  9.       }
+  10.   }
+
+src/main/java/net/glowstone/net/codec/play/game/TitleCodec.java:17: error: NULL_DEREFERENCE
+  object `action` last assigned on line 16 could be null and is dereferenced at line 17.
+  15.           int actionId = ByteBufUtils.readVarInt(buffer);
+  16.           Action action = Action.getAction(actionId);
+  17. >         switch (action) {
+  18.               case TITLE:
+  19.               case SUBTITLE:
+
+src/main/java/net/glowstone/net/codec/play/game/WorldBorderCodec.java:17: error: NULL_DEREFERENCE
+  object `action` last assigned on line 16 could be null and is dereferenced at line 17.
+  15.           int actionId = ByteBufUtils.readVarInt(buffer);
+  16.           Action action = Action.getAction(actionId);
+  17. >         switch (action) {
+  18.               case SET_SIZE:
+  19.                   double radius = buffer.readDouble();
+
+src/main/java/net/glowstone/net/codec/play/player/CombatEventCodec.java:18: error: NULL_DEREFERENCE
+  object `event` last assigned on line 17 could be null and is dereferenced at line 18.
+  16.           int eventId = ByteBufUtils.readVarInt(buffer);
+  17.           Event event = Event.getAction(eventId);
+  18. >         switch (event) {
+  19.               case END_COMBAT: {
+  20.                   int duration = ByteBufUtils.readVarInt(buffer);
+
+src/main/java/net/glowstone/block/itemtype/ItemBanner.java:26: error: NULL_DEREFERENCE
+  object `placeAs` last assigned on line 24 could be null and is dereferenced at line 26.
+  24.               placeAs = ItemTable.instance().getBlock(Material.WALL_BANNER);
+  25.           }
+  26. >         placeAs.rightClickBlock(player, target, face, holding, clickedLoc, hand);
+  27.       }
+  28.   }
+
+src/main/java/net/glowstone/block/itemtype/ItemSign.java:26: error: NULL_DEREFERENCE
+  object `placeAs` last assigned on line 24 could be null and is dereferenced at line 26.
+  24.               placeAs = ItemTable.instance().getBlock(Material.WALL_SIGN);
+  25.           }
+  26. >         placeAs.rightClickBlock(player, target, face, holding, clickedLoc, hand);
+  27.       }
+  28.   
+
+src/main/java/net/glowstone/inventory/GlowBrewerInventory.java:21: error: NULL_DEREFERENCE
+  object returned by `getSlot(0)` could be null and is dereferenced at line 21.
+  19.           super(holder, InventoryType.BREWING);
+  20.   
+  21. >         getSlot(INGREDIENT_SLOT).setType(SlotType.FUEL);
+  22.           for (int slot = 1; slot < 4; slot++) {
+  23.               getSlot(slot).setType(SlotType.CRAFTING);
+
+src/main/java/net/glowstone/inventory/GlowBrewerInventory.java:23: error: NULL_DEREFERENCE
+  object returned by `getSlot(slot)` could be null and is dereferenced at line 23.
+  21.           getSlot(INGREDIENT_SLOT).setType(SlotType.FUEL);
+  22.           for (int slot = 1; slot < 4; slot++) {
+  23. >             getSlot(slot).setType(SlotType.CRAFTING);
+  24.           }
+  25.       }
+
+src/main/java/net/glowstone/io/entity/ItemFrameStore.java:20: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `GlowItemFrame(...)` at line 20.
+  18.       public GlowItemFrame createEntity(Location location, CompoundTag compound) {
+  19.           // item frame will be set by loading code below
+  20. >         return new GlowItemFrame(null, location, null);
+  21.       }
+  22.   
+
+src/main/java/net/glowstone/util/loot/LootItem.java:20: error: NULL_DEREFERENCE
+  object returned by `object.get("default")` could be null and is dereferenced by call to `DefaultLootItem(...)` at line 20.
+  18.        */
+  19.       public LootItem(JSONObject object) {
+  20. >         defaultItem = new DefaultLootItem((JSONObject) object.get("default"));
+  21.           if (object.containsKey("conditions")) {
+  22.               JSONArray array = (JSONArray) object.get("conditions");
+
+src/main/java/net/glowstone/inventory/GlowBeaconInventory.java:23: error: NULL_DEREFERENCE
+  object returned by `getSlot(0)` could be null and is dereferenced at line 23.
+  21.           super(owner, InventoryType.BEACON);
+  22.   
+  23. >         getSlot(INPUT_SLOT).setType(InventoryType.SlotType.CRAFTING);
+  24.       }
+  25.   
+
+src/main/java/net/glowstone/block/itemtype/ItemArmorStand.java:26: error: NULL_DEREFERENCE
+  object `type` last assigned on line 23 could be null and is dereferenced at line 26.
+  24.   
+  25.           GlowBlock newTarget =
+  26. >             type.canAbsorb(target, face, holding) ? target : target.getRelative(face);
+  27.           type = ItemTable.instance().getBlock(newTarget.getType());
+  28.   
+
+src/main/java/net/glowstone/block/itemtype/ItemDye.java:50: error: NULL_DEREFERENCE
+  object returned by `instance().getBlock(org.bukkit.Material.COCOA)` could be null and is dereferenced at line 50.
+  48.               } else if (dye.getColor() == DyeColor.BROWN && target.getType() == Material.LOG) {
+  49.                   ItemTable.instance().getBlock(Material.COCOA)
+  50. >                     .rightClickBlock(player, target, face, holding, clickedLoc, hand);
+  51.               }
+  52.           }
+
+src/main/java/net/glowstone/net/protocol/ProtocolProvider.java:30: error: RESOURCE_LEAK
+  resource of type `io.netty.resolver.dns.DnsAddressResolverGroup` acquired by call to `HttpClient(...)` at line 27 is not released after line 30.
+  28.   
+  29.           this.status = new StatusProtocol();
+  30. >         this.login = new LoginProtocol(httpClient);
+  31.           this.handshake = new HandshakeProtocol(status, login);
+  32.           this.play = new PlayProtocol();
+
+src/main/java/net/glowstone/scoreboard/NbtScoreboardIoWriter.java:30: error: RESOURCE_LEAK
+  resource of type `java.io.FileOutputStream` acquired by call to `getDataOutputStream(...)` at line 30 is not released after line 30.
+**Note**: potential exception at line 30
+  28.           CompoundTag data = new CompoundTag();
+  29.           root.putCompound("data", data);
+  30. >         try (NbtOutputStream nbt = new NbtOutputStream(getDataOutputStream(path), true)) {
+  31.               writeObjectives(data, scoreboard);
+  32.               writeScores(data, scoreboard);
+
+src/main/java/net/glowstone/scoreboard/NbtScoreboardIoWriter.java:38: error: RESOURCE_LEAK
+  resource of type `java.io.FileOutputStream` acquired by call to `getDataOutputStream(...)` at line 30 is not released after line 38.
+**Note**: potential exception at line 31
+  36.               nbt.writeTag(root);
+  37.               nbt.close();
+  38. >         }
+  39.       }
+  40.   
+
+src/main/java/net/glowstone/inventory/GlowFurnaceInventory.java:29: error: NULL_DEREFERENCE
+  object returned by `getSlot(0)` could be null and is dereferenced at line 29.
+  27.           super(owner, InventoryType.FURNACE);
+  28.   
+  29. >         getSlot(INPUT_SLOT).setType(SlotType.CRAFTING);
+  30.           getSlot(FUEL_SLOT).setType(SlotType.FUEL);
+  31.           getSlot(RESULT_SLOT).setType(SlotType.RESULT);
+
+src/main/java/net/glowstone/inventory/GlowFurnaceInventory.java:30: error: NULL_DEREFERENCE
+  object returned by `getSlot(1)` could be null and is dereferenced at line 30.
+  28.   
+  29.           getSlot(INPUT_SLOT).setType(SlotType.CRAFTING);
+  30. >         getSlot(FUEL_SLOT).setType(SlotType.FUEL);
+  31.           getSlot(RESULT_SLOT).setType(SlotType.RESULT);
+  32.       }
+
+src/main/java/net/glowstone/inventory/GlowFurnaceInventory.java:31: error: NULL_DEREFERENCE
+  object returned by `getSlot(2)` could be null and is dereferenced at line 31.
+  29.           getSlot(INPUT_SLOT).setType(SlotType.CRAFTING);
+  30.           getSlot(FUEL_SLOT).setType(SlotType.FUEL);
+  31. >         getSlot(RESULT_SLOT).setType(SlotType.RESULT);
+  32.       }
+  33.   
+
+src/main/java/net/glowstone/scoreboard/NbtScoreboardIoReader.java:29: error: RESOURCE_LEAK
+  resource of type `java.io.DataInputStream` acquired by call to `getDataInputStream(...)` at line 29 is not released after line 29.
+**Note**: potential exception at line 29
+  27.           CompoundTag root;
+  28.   
+  29. >         try (NbtInputStream nbt = new NbtInputStream(getDataInputStream(path), true)) {
+  30.               root = nbt.readCompound().getCompound("data");
+  31.           }
+
+src/main/java/net/glowstone/data/CommandFunction.java:38: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired by call to `Scanner(...)` at line 30 is not released after line 38.
+  36.               }
+  37.           }
+  38. >         return new CommandFunction(namespace, name, lines);
+  39.       }
+  40.   
+
+src/main/java/net/glowstone/block/itemtype/ItemFilledBucket.java:36: error: NULL_DEREFERENCE
+  object `againstBlockType` last assigned on line 32 could be null and is dereferenced at line 36.
+  34.           // only allow placement inside replaceable blocks
+  35.   
+  36. >         if (againstBlockType.canAbsorb(target, face, holding)) {
+  37.               target = against;
+  38.           } else if (!target.isEmpty()) {
+
+src/main/java/net/glowstone/inventory/GlowEnchantingInventory.java:32: error: NULL_DEREFERENCE
+  object returned by `getSlot(0)` could be null and is dereferenced at line 32.
+  30.           super(player, InventoryType.ENCHANTING);
+  31.   
+  32. >         getSlot(ITEM_SLOT).setType(SlotType.CRAFTING);
+  33.           getSlot(LAPIS_SLOT).setType(SlotType.CRAFTING);
+  34.   
+
+src/main/java/net/glowstone/inventory/GlowEnchantingInventory.java:33: error: NULL_DEREFERENCE
+  object returned by `getSlot(1)` could be null and is dereferenced at line 33.
+  31.   
+  32.           getSlot(ITEM_SLOT).setType(SlotType.CRAFTING);
+  33. >         getSlot(LAPIS_SLOT).setType(SlotType.CRAFTING);
+  34.   
+  35.           enchantmentManager = new EnchantmentManager(this, player);
+
+src/main/java/net/glowstone/inventory/GlowMerchantInventory.java:36: error: NULL_DEREFERENCE
+  object returned by `getSlot(0)` could be null and is dereferenced at line 36.
+  34.           this.selectedRecipeIndex = 0;
+  35.   
+  36. >         getSlot(SLOT_INPUT_1).setType(InventoryType.SlotType.CONTAINER);
+  37.           getSlot(SLOT_INPUT_2).setType(InventoryType.SlotType.CONTAINER);
+  38.           getSlot(SLOT_RESULT).setType(InventoryType.SlotType.RESULT);
+
+src/main/java/net/glowstone/inventory/GlowMerchantInventory.java:37: error: NULL_DEREFERENCE
+  object returned by `getSlot(1)` could be null and is dereferenced at line 37.
+  35.   
+  36.           getSlot(SLOT_INPUT_1).setType(InventoryType.SlotType.CONTAINER);
+  37. >         getSlot(SLOT_INPUT_2).setType(InventoryType.SlotType.CONTAINER);
+  38.           getSlot(SLOT_RESULT).setType(InventoryType.SlotType.RESULT);
+  39.       }
+
+src/main/java/net/glowstone/inventory/GlowMerchantInventory.java:38: error: NULL_DEREFERENCE
+  object returned by `getSlot(2)` could be null and is dereferenced at line 38.
+  36.           getSlot(SLOT_INPUT_1).setType(InventoryType.SlotType.CONTAINER);
+  37.           getSlot(SLOT_INPUT_2).setType(InventoryType.SlotType.CONTAINER);
+  38. >         getSlot(SLOT_RESULT).setType(InventoryType.SlotType.RESULT);
+  39.       }
+  40.   
+
+src/main/java/net/glowstone/block/entity/state/GlowChest.java:34: error: NULL_DEREFERENCE
+  object `blockChest` last assigned on line 33 could be null and is dereferenced at line 34.
+  32.           GlowBlock me = getBlock();
+  33.           BlockChest blockChest = (BlockChest) ItemTable.instance().getBlock(me.getType());
+  34. >         BlockFace attachedChest = blockChest.getAttachedChest(me);
+  35.   
+  36.           if (attachedChest != null) {
+
+src/main/java/net/glowstone/inventory/GlowCraftingInventory.java:38: error: NULL_DEREFERENCE
+  object returned by `getSlot(0)` could be null and is dereferenced at line 38.
+  36.           }
+  37.   
+  38. >         getSlot(RESULT_SLOT).setType(SlotType.RESULT);
+  39.           for (int i = MATRIX_START; i < getSize(); i++) {
+  40.               getSlot(i).setType(SlotType.CRAFTING);
+
+src/main/java/net/glowstone/inventory/GlowCraftingInventory.java:40: error: NULL_DEREFERENCE
+  object returned by `getSlot(i)` could be null and is dereferenced at line 40.
+  38.           getSlot(RESULT_SLOT).setType(SlotType.RESULT);
+  39.           for (int i = MATRIX_START; i < getSize(); i++) {
+  40. >             getSlot(i).setType(SlotType.CRAFTING);
+  41.           }
+  42.       }
+
+src/main/java/net/glowstone/inventory/GlowAnvilInventory.java:37: error: NULL_DEREFERENCE
+  object returned by `getSlot(0)` could be null and is dereferenced at line 37.
+  35.           super(holder, InventoryType.ANVIL);
+  36.   
+  37. >         getSlot(FIRST_ITEM_SLOT).setType(SlotType.CRAFTING);
+  38.           getSlot(SECOND_ITEM_SLOT).setType(SlotType.CRAFTING);
+  39.           getSlot(RESULT_SLOT).setType(SlotType.RESULT);
+
+src/main/java/net/glowstone/inventory/GlowAnvilInventory.java:38: error: NULL_DEREFERENCE
+  object returned by `getSlot(1)` could be null and is dereferenced at line 38.
+  36.   
+  37.           getSlot(FIRST_ITEM_SLOT).setType(SlotType.CRAFTING);
+  38. >         getSlot(SECOND_ITEM_SLOT).setType(SlotType.CRAFTING);
+  39.           getSlot(RESULT_SLOT).setType(SlotType.RESULT);
+  40.       }
+
+src/main/java/net/glowstone/inventory/GlowAnvilInventory.java:39: error: NULL_DEREFERENCE
+  object returned by `getSlot(2)` could be null and is dereferenced at line 39.
+  37.           getSlot(FIRST_ITEM_SLOT).setType(SlotType.CRAFTING);
+  38.           getSlot(SECOND_ITEM_SLOT).setType(SlotType.CRAFTING);
+  39. >         getSlot(RESULT_SLOT).setType(SlotType.RESULT);
+  40.       }
+  41.   
+
+src/main/java/net/glowstone/inventory/GlowMetaBook.java:48: error: NULL_DEREFERENCE
+  object returned by `book.getGeneration()` could be null and is dereferenced at line 48.
+  46.           }
+  47.           if (hasGeneration()) {
+  48. >             this.generation = book.getGeneration().ordinal();
+  49.           }
+  50.       }
+
+src/main/java/net/glowstone/util/ReflectionProcessor.java:90: error: NULL_DEREFERENCE
+  object `cxt` last assigned on line 40 could be null and is dereferenced by call to `invokeField(...)` at line 90.
+  88.                   cxt = invokeMethod(cxt, name, parameters);
+  89.               } else {
+  90. >                 Object field = invokeField(cxt, section);
+  91.                   if (field == null) {
+  92.                       // Class
+
+src/main/java/net/glowstone/util/loot/LootRandomValues.java:74: error: NULL_DEREFERENCE
+  object returned by `object.get("max")` could be null and is dereferenced at line 74.
+  72.               this.min = Optional.of(0);
+  73.           }
+  74. >         this.max = Optional.of(((Long) object.get("max")).intValue());
+  75.       }
+  76.   
+
+src/test/java/net/glowstone/util/VariableValueArrayTest.java:43: error: NULL_DEREFERENCE
+  object returned by `instance().getBlock(material)` could be null and is dereferenced at line 43.
+  41.        */
+  42.       private static int block(Material material, int metadata) {
+  43. >         int id = ItemTable.instance().getBlock(material).getId();
+  44.           return (id << 4 | metadata);
+  45.       }
+
+src/main/java/net/glowstone/io/data/WorldFunctionIoService.java:47: error: NULL_DEREFERENCE
+  object returned by `parent.listFiles()` could be null and is dereferenced at line 47.
+  45.           throws IOException {
+  46.           List<CommandFunction> functions = new ArrayList<>();
+  47. >         for (File file : parent.listFiles()) {
+  48.               if (file.isDirectory()) {
+  49.                   functions.addAll(functionsInside(namespace, location + file.getName() + "/", file));
+
+src/main/java/net/glowstone/io/nbt/NbtStructureDataService.java:50: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 50 is not released after line 50.
+**Note**: potential exception at line 50
+  48.               File structureFile = new File(structureDir, store.getId() + ".dat");
+  49.               if (structureFile.exists()) {
+  50. >                 try (NbtInputStream in = new NbtInputStream(new FileInputStream(structureFile))) {
+  51.                       CompoundTag data = in.readCompound();
+  52.                       if (!data.readCompound("data", innerData -> innerData.readCompound(// NON-NLS
+
+src/main/java/net/glowstone/block/blocktype/BlockSign.java:48: error: NULL_DEREFERENCE
+  object returned by `instance().getBlock(block.getRelative(against.getOppositeFace()).getType())` could be null and is dereferenced at line 48.
+  46.       public boolean canPlaceAt(GlowPlayer player, GlowBlock block, BlockFace against) {
+  47.           Material targetMat = ItemTable.instance().getBlock(
+  48. >             block.getRelative(against.getOppositeFace()).getType()).getMaterial();
+  49.           return canAttachTo(block, against) || targetMat == Material.SIGN_POST
+  50.               || targetMat == Material.WALL_SIGN; 
+
+src/main/java/net/glowstone/inventory/GlowAnvilInventory.java:48: error: NULL_DEREFERENCE
+  object returned by `getSlot(0)` could be null and is dereferenced at line 48.
+  46.   
+  47.       public ItemStack getFirstItem() {
+  48. >         return getSlot(FIRST_ITEM_SLOT).getItem();
+  49.       }
+  50.   
+
+src/main/java/net/glowstone/generator/NetherGenerator.java:60: error: NULL_DEREFERENCE
+  object returned by `getWorldOctaves(world).get("gravel")` could be null and is dereferenced at line 60.
+  58.                   .getFractalBrownianMotion(cx, cz, 0, 0.5D, 2.0D);
+  59.           double[] gravelNoise = ((PerlinOctaveGenerator) getWorldOctaves(world).get("gravel"))
+  60. >                 .getFractalBrownianMotion(cx, 0, cz, 0.5D, 2.0D);
+  61.           for (int x = 0; x < 16; x++) {
+  62.               for (int z = 0; z < 16; z++) {
+
+src/main/java/net/glowstone/generator/NetherGenerator.java:58: error: NULL_DEREFERENCE
+  object returned by `getWorldOctaves(world).get("soulsand")` could be null and is dereferenced at line 58.
+  56.                   .getFractalBrownianMotion(cx, cz, 0, 0.5D, 2.0D);
+  57.           double[] soulsandNoise = ((PerlinOctaveGenerator) getWorldOctaves(world).get("soulsand"))
+  58. >                 .getFractalBrownianMotion(cx, cz, 0, 0.5D, 2.0D);
+  59.           double[] gravelNoise = ((PerlinOctaveGenerator) getWorldOctaves(world).get("gravel"))
+  60.                   .getFractalBrownianMotion(cx, 0, cz, 0.5D, 2.0D);
+
+src/main/java/net/glowstone/generator/NetherGenerator.java:56: error: NULL_DEREFERENCE
+  object returned by `getWorldOctaves(world).get("surface")` could be null and is dereferenced at line 56.
+  54.   
+  55.           double[] surfaceNoise = ((PerlinOctaveGenerator) getWorldOctaves(world).get("surface"))
+  56. >                 .getFractalBrownianMotion(cx, cz, 0, 0.5D, 2.0D);
+  57.           double[] soulsandNoise = ((PerlinOctaveGenerator) getWorldOctaves(world).get("soulsand"))
+  58.                   .getFractalBrownianMotion(cx, cz, 0, 0.5D, 2.0D);
+
+src/main/java/net/glowstone/inventory/GlowAnvilInventory.java:52: error: NULL_DEREFERENCE
+  object returned by `getSlot(1)` could be null and is dereferenced at line 52.
+  50.   
+  51.       public ItemStack getSecondItem() {
+  52. >         return getSlot(SECOND_ITEM_SLOT).getItem();
+  53.       }
+  54.   
+
+src/main/java/net/glowstone/io/nbt/NbtWorldMetadataService.java:71: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 71 is not released after line 71.
+**Note**: potential exception at line 71
+  69.           File levelFile = new File(dir, LEVEL_FILE);
+  70.           if (levelFile.exists()) {
+  71. >             try (NbtInputStream in = new NbtInputStream(new FileInputStream(levelFile))) {
+  72.                   CompoundTag levelOuter = in.readCompound();
+  73.                   level = levelOuter.tryGetCompound("Data").orElseGet(() -> {
+
+src/main/java/net/glowstone/inventory/GlowAnvilInventory.java:56: error: NULL_DEREFERENCE
+  object returned by `getSlot(2)` could be null and is dereferenced at line 56.
+  54.   
+  55.       public ItemStack getResultItem() {
+  56. >         return getSlot(RESULT_SLOT).getItem();
+  57.       }
+  58.   
+
+src/main/java/net/glowstone/net/ProxyData.java:70: error: NULL_DEREFERENCE
+  object returned by `payload.get("u")` could be null and is dereferenced by call to `fromFlatString(...)` at line 70.
+  68.               // LilyPad also spoofs the port, unlike Bungee
+  69.               hostname = (String) payload.get("h");
+  70. >             uuid = UuidUtils.fromFlatString((String) payload.get("u"));
+  71.               address = new InetSocketAddress(
+  72.                       (String) payload.get("rIp"), ((Long) payload.get("rP")).intValue());
+
+src/main/java/net/glowstone/command/minecraft/TitleCommand.java:78: error: INEFFICIENT_KEYSET_ITERATOR
+  Accessing a value using a key that was retrieved from a `keySet` iterator. It is more efficient to use an iterator on the `entrySet` of the map, avoiding the extra `HashMap.get(key)` lookup.
+  76.                       return null;
+  77.                   }
+  78. >                 color = toColor((String) json.get(keyString));
+  79.               } else if (!keyString.equalsIgnoreCase("text")) { // NON-NLS
+  80.                   if (toColor(keyString) == null) {
+
+src/main/java/net/glowstone/entity/AttributeManager.java:67: error: NULL_DEREFERENCE
+  object returned by `player.getUniqueId()` could be null and is dereferenced at line 67.
+  65.           if (entity instanceof GlowPlayer) {
+  66.               GlowPlayer player = (GlowPlayer) entity;
+  67. >             if (player.getUniqueId().equals(session.getPlayer().getUniqueId())) {
+  68.                   id = 0;
+  69.               }
+
+src/main/java/net/glowstone/entity/objects/GlowItem.java:79: error: NULL_DEREFERENCE
+  object returned by `getItemStack()` could be null and is dereferenced at line 79.
+  77.           } else {
+  78.               CollectItemMessage message = new CollectItemMessage(getEntityId(), player.getEntityId(),
+  79. >                     getItemStack().getAmount());
+  80.               world.playSound(location, Sound.ENTITY_ITEM_PICKUP, 0.3f, (float) (1 + Math.random()));
+  81.               world.getRawPlayers().stream().filter(other -> other.canSeeEntity(this))
+
+src/main/java/net/glowstone/io/nbt/NbtStructureDataService.java:84: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 84 is not released after line 84.
+**Note**: potential exception at line 84
+  82.                   File structureFile = new File(structureDir, store.getId() + ".dat");
+  83.                   if (structureFile.exists()) {
+  84. >                     try (NbtInputStream in = new NbtInputStream(
+  85.                               new FileInputStream(structureFile))) {
+  86.                           inputRoot = in.readCompound();
+
+src/main/java/net/glowstone/io/nbt/NbtStructureDataService.java:104: error: RESOURCE_LEAK
+  resource of type `java.io.FileOutputStream` acquired by call to `FileOutputStream(...)` at line 104 is not released after line 104.
+**Note**: potential exception at line 104
+  102.                   CompoundTag root = new CompoundTag();
+  103.                   root.putCompound("data", data); // NON-NLS
+  104. >                 try (NbtOutputStream nbtOut = new NbtOutputStream(
+  105.                       new FileOutputStream(structureFile))) {
+  106.                       nbtOut.writeTag(root);
+
+src/main/java/net/glowstone/io/nbt/NbtStructureDataService.java:107: error: RESOURCE_LEAK
+  resource of type `java.io.FileOutputStream` acquired by call to `FileOutputStream(...)` at line 104 is not released after line 107.
+**Note**: potential exception at line 106
+  105.                       new FileOutputStream(structureFile))) {
+  106.                       nbtOut.writeTag(root);
+  107. >                 } catch (IOException e) {
+  108.                       ConsoleMessages.Error.Structure.SAVE_FAILED.log(e, structureFile);
+  109.                   }
+
+src/main/java/net/glowstone/entity/meta/profile/PlayerDataFetcher.java:105: error: NULL_DEREFERENCE
+  object `uuid` last assigned on line 104 could be null and is dereferenced by call to `fromFlatString(...)` at line 105.
+  103.           if (!json.isEmpty()) {
+  104.               String uuid = (String) ((JSONObject) json.get(0)).get("id");
+  105. >             return UuidUtils.fromFlatString(uuid);
+  106.           }
+  107.           return null;
+
+src/main/java/net/glowstone/entity/meta/profile/PlayerDataFetcher.java:97: error: RESOURCE_LEAK
+  resource of type `javax.net.ssl.HttpsURLConnection` acquired by call to `openConnection()` at line 78 is not released after line 97.
+  95.               }
+  96.   
+  97. >             json = (JSONArray) JSONValue.parse(new InputStreamReader(conn.getInputStream()));
+  98.           } catch (IOException e) {
+  99.               GlowServer.logger.warning("Couldn't get UUID due to IO error: " + e);
+
+src/main/java/net/glowstone/entity/meta/profile/PlayerDataFetcher.java:93: error: RESOURCE_LEAK
+  resource of type `javax.net.ssl.HttpsURLConnection` acquired to `conn` by call to `openConnection()` at line 78 is not released after line 93.
+**Note**: potential exception at line 94
+  91.   
+  92.           try {
+  93. >             try (DataOutputStream os = new DataOutputStream(conn.getOutputStream())) {
+  94.                   os.writeBytes(JSONValue.toJSONString(playerList));
+  95.               }
+
+src/main/java/net/glowstone/block/BuiltinMaterialValueManager.java:76: error: NULL_DEREFERENCE
+  object returned by `get(this,"hardness")` could be null and is dereferenced at line 76.
+  74.           @Override
+  75.           public float getHardness() {
+  76. >             float hardness = ((Number) get("hardness")).floatValue();
+  77.               return hardness == -1 ? Float.MAX_VALUE : hardness;
+  78.           }
+
+src/main/java/net/glowstone/inventory/GlowPlayerInventory.java:84: error: NULL_DEREFERENCE
+  object returned by `getSlot(i)` could be null and is dereferenced at line 84.
+  82.           this.owner = owner;
+  83.           for (int i = 0; i <= 8; i++) {
+  84. >             getSlot(i).setType(SlotType.QUICKBAR);
+  85.           }
+  86.           for (int i = BOOTS_SLOT; i <= HELMET_SLOT; i++) {
+
+src/main/java/net/glowstone/inventory/GlowPlayerInventory.java:87: error: NULL_DEREFERENCE
+  object returned by `getSlot(i)` could be null and is dereferenced at line 87.
+  85.           }
+  86.           for (int i = BOOTS_SLOT; i <= HELMET_SLOT; i++) {
+  87. >             getSlot(i).setType(SlotType.ARMOR);
+  88.           }
+  89.       }
+
+src/main/java/net/glowstone/GlowOfflinePlayer.java:86: error: NULL_DEREFERENCE
+  object returned by `val.get("UUID")` could be null and is dereferenced at line 86.
+  84.               // use UUID
+  85.               return server.getOfflinePlayer(
+  86. >                     UuidUtils.fromString(val.get("UUID").toString())); // NON-NLS
+  87.           }
+  88.       }
+
+src/main/java/net/glowstone/block/BuiltinMaterialValueManager.java:88: error: NULL_DEREFERENCE
+  object returned by `get(this,"blastResistance")` could be null and is dereferenced at line 88.
+  86.           @Override
+  87.           public float getBlastResistance() {
+  88. >             return ((Number) get("blastResistance")).floatValue();
+  89.           }
+  90.   
+
+src/main/java/net/glowstone/io/json/JsonPlayerStatisticIoService.java:96: error: RESOURCE_LEAK
+  resource of type `java.io.FileWriter` acquired to `writer` by call to `new()` at line 93 is not released after line 96.
+**Note**: potential exception at line 94
+  94.               writer.write(json.toJSONString());
+  95.               writer.close();
+  96. >         } catch (IOException e) {
+  97.               e.printStackTrace();
+  98.           }
+
+src/main/java/net/glowstone/block/BuiltinMaterialValueManager.java:93: error: NULL_DEREFERENCE
+  object returned by `get(this,"lightOpacity")` could be null and is dereferenced at line 93.
+  91.           @Override
+  92.           public int getLightOpacity() {
+  93. >             return ((Number) get("lightOpacity")).intValue();
+  94.           }
+  95.   
+
+src/main/java/net/glowstone/io/nbt/NbtPlayerDataService.java:98: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 98 is not released after line 98.
+**Note**: potential exception at line 98
+  96.           CompoundTag playerTag = new CompoundTag();
+  97.           if (playerFile.exists()) {
+  98. >             try (NbtInputStream in = new NbtInputStream(new FileInputStream(playerFile))) {
+  99.                   playerTag = in.readCompound();
+  100.               } catch (IOException e) {
+
+src/main/java/net/glowstone/block/BuiltinMaterialValueManager.java:98: error: NULL_DEREFERENCE
+  object returned by `get(this,"flameResistance")` could be null and is dereferenced at line 98.
+  96.           @Override
+  97.           public int getFlameResistance() {
+  98. >             return ((Number) get("flameResistance")).intValue();
+  99.           }
+  100.   
+
+src/main/java/net/glowstone/block/BuiltinMaterialValueManager.java:103: error: NULL_DEREFERENCE
+  object returned by `get(this,"fireResistance")` could be null and is dereferenced at line 103.
+  101.           @Override
+  102.           public int getFireResistance() {
+  103. >             return ((Number) get("fireResistance")).intValue();
+  104.           }
+  105.   
+
+src/main/java/net/glowstone/entity/objects/GlowItem.java:131: error: NULL_DEREFERENCE
+  object returned by `entity.getItemStack()` could be null and is dereferenced at line 131.
+  129.                   if (entity instanceof GlowItem) {
+  130.                       if (entity != this && ((GlowItem) entity).getItemStack()
+  131. >                             .isSimilar(getItemStack())) {
+  132.                           ItemStack clone = getItemStack().clone();
+  133.   
+
+src/main/java/net/glowstone/entity/objects/GlowItem.java:139: error: NULL_DEREFERENCE
+  object returned by `entity.getItemStack()` could be null and is dereferenced at line 139.
+  137.                           if (!event.isCancelled()) {
+  138.                               clone.setAmount(
+  139. >                                     ((GlowItem) entity).getItemStack().getAmount()
+  140.                                               + clone.getAmount());
+  141.                               entity.remove();
+
+src/main/java/net/glowstone/io/nbt/NbtPlayerDataService.java:113: error: RESOURCE_LEAK
+  resource of type `java.io.FileOutputStream` acquired by call to `FileOutputStream(...)` at line 113 is not released after line 113.
+**Note**: potential exception at line 113
+  111.           CompoundTag tag = new CompoundTag();
+  112.           EntityStorage.save(player, tag);
+  113. >         try (NbtOutputStream out = new NbtOutputStream(new FileOutputStream(playerFile))) {
+  114.               out.writeTag(tag);
+  115.           } catch (IOException e) {
+
+src/main/java/net/glowstone/block/BuiltinMaterialValueManager.java:113: error: NULL_DEREFERENCE
+  object returned by `get(this,"baseMapColor")` could be null and is dereferenced at line 113.
+  111.           @Override
+  112.           public byte getBaseMapColor() {
+  113. >             return ((Number) get("baseMapColor")).byteValue();
+  114.           }
+  115.   
+
+src/main/java/net/glowstone/util/library/LibraryManager.java:196: error: NULL_DEREFERENCE
+  object returned by `getProperty("java.version")` could be null and is dereferenced at line 196.
+  194.               // hack it onto the classpath
+  195.               try {
+  196. >                 String[] javaVersion = System.getProperty("java.version").split("-")[0]
+  197.                           .split("\\.");
+  198.                   if (Integer.parseInt(javaVersion[0]) >= 9) {
+
+src/main/java/net/glowstone/util/library/LibraryManager.java:199: error: RESOURCE_LEAK
+  resource of type `java.util.jar.JarFile` acquired by call to `JarFile(...)` at line 199 is not released after line 199.
+  197.                           .split("\\.");
+  198.                   if (Integer.parseInt(javaVersion[0]) >= 9) {
+  199. >                     ClassPathAgent.addJarFile(new JarFile(file));
+  200.                   } else {
+  201.                       Method method = URLClassLoader.class.getDeclaredMethod("addURL", URL.class);
+
+src/main/java/net/glowstone/generator/TheEndGenerator.java:132: error: NULL_DEREFERENCE
+  object returned by `octaves.get("detail")` could be null and is dereferenced at line 132.
+  130.                   .getFractalBrownianMotion(x, 0, z, 0.5D, 2.0D);
+  131.           double[] detailNoise = ((PerlinOctaveGenerator) octaves.get("detail"))
+  132. >                 .getFractalBrownianMotion(x, 0, z, 0.5D, 2.0D);
+  133.   
+  134.           int index = 0;
+
+src/main/java/net/glowstone/generator/TheEndGenerator.java:128: error: NULL_DEREFERENCE
+  object returned by `octaves.get("roughness")` could be null and is dereferenced at line 128.
+  126.           Map<String, OctaveGenerator> octaves = getWorldOctaves(world);
+  127.           double[] roughnessNoise = ((PerlinOctaveGenerator) octaves.get("roughness"))
+  128. >                 .getFractalBrownianMotion(x, 0, z, 0.5D, 2.0D);
+  129.           double[] roughnessNoise2 = ((PerlinOctaveGenerator) octaves.get("roughness2"))
+  130.                   .getFractalBrownianMotion(x, 0, z, 0.5D, 2.0D);
+
+src/main/java/net/glowstone/generator/TheEndGenerator.java:130: error: NULL_DEREFERENCE
+  object returned by `octaves.get("roughness2")` could be null and is dereferenced at line 130.
+  128.                   .getFractalBrownianMotion(x, 0, z, 0.5D, 2.0D);
+  129.           double[] roughnessNoise2 = ((PerlinOctaveGenerator) octaves.get("roughness2"))
+  130. >                 .getFractalBrownianMotion(x, 0, z, 0.5D, 2.0D);
+  131.           double[] detailNoise = ((PerlinOctaveGenerator) octaves.get("detail"))
+  132.                   .getFractalBrownianMotion(x, 0, z, 0.5D, 2.0D);
+
+src/main/java/net/glowstone/io/nbt/NbtPlayerDataService.java:129: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 129 is not released after line 129.
+**Note**: potential exception at line 129
+  127.           public NbtPlayerReader(File playerFile) {
+  128.               if (playerFile.exists()) {
+  129. >                 try (NbtInputStream in = new NbtInputStream(new FileInputStream(playerFile))) {
+  130.                       tag = in.readCompound();
+  131.                       hasPlayed = true;
+
+src/main/java/net/glowstone/command/minecraft/SummonCommand.java:132: error: NULL_DEREFERENCE
+  object `messages` could be null and is dereferenced at line 132.
+  130.               @Nullable CommandMessages messages, String entityType, @NonNls String key) {
+  131.           if (sender != null) {
+  132. >             new LocalizedStringImpl(key, messages.getResourceBundle())
+  133.                       .sendInColor(ChatColor.RED, sender, entityType);
+  134.           }
+
+src/main/java/net/glowstone/io/entity/EntityStore.java:143: error: NULL_DEREFERENCE
+  object returned by `entity.getUniqueId()` could be null and is dereferenced at line 143.
+  141.           tag.putBool("OnGround", entity.isOnGround());
+  142.   
+  143. >         tag.putLong("UUIDMost", entity.getUniqueId().getMostSignificantBits());
+  144.           tag.putLong("UUIDLeast", entity.getUniqueId().getLeastSignificantBits());
+  145.   
+
+src/main/java/net/glowstone/net/handler/login/EncryptionKeyResponseHandler.java:152: error: NULL_DEREFERENCE
+  object `id` last assigned on line 147 could be null and is dereferenced by call to `fromFlatString(...)` at line 152.
+  150.               UUID uuid;
+  151.               try {
+  152. >                 uuid = UuidUtils.fromFlatString(id);
+  153.               } catch (IllegalArgumentException ex) {
+  154.                   ConsoleMessages.Error.Net.Crypt.BAD_UUID.log(ex, id);
+
+src/main/java/net/glowstone/net/handler/login/EncryptionKeyResponseHandler.java:162: error: NULL_DEREFERENCE
+  object `propsArray` last assigned on line 159 could be null and is dereferenced at line 162.
+  160.   
+  161.               // parse properties
+  162. >             List<ProfileProperty> properties = new ArrayList<>(propsArray.size());
+  163.               for (Object obj : propsArray) {
+  164.                   JSONObject propJson = (JSONObject) obj;
+
+src/main/java/net/glowstone/scoreboard/NbtScoreboardIoReader.java:139: error: NULL_DEREFERENCE
+  object returned by `scoreboard.getObjective(list)` could be null and is dereferenced at line 139.
+  137.   
+  138.               data.readString("slot_0",
+  139. >                 list -> scoreboard.getObjective(list).setDisplaySlot(DisplaySlot.PLAYER_LIST));
+  140.               data.readString("slot_1",
+  141.                   sidebar -> scoreboard.getObjective(sidebar).setDisplaySlot(DisplaySlot.SIDEBAR));
+
+src/main/java/net/glowstone/block/blocktype/BlockCauldron.java:142: error: NULL_DEREFERENCE
+  object returned by `__new(net.glowstone.inventory.GlowMetaPotion).getBasePotionData()` could be null and is dereferenced at line 142.
+  140.       private boolean emptyBottle(GlowPlayer player, GlowBlock block) {
+  141.           // fired when a player partially fills the cauldron using a water bottle
+  142. >         if (new GlowMetaPotion(player.getItemInHand().getItemMeta()).getBasePotionData().getType() != PotionType.WATER) {
+  143.               // player is holding a "potion" and not an "empty bottle"
+  144.               return false; // block interact doesn't occur and player drinks potion
+
+src/main/java/net/glowstone/scoreboard/NbtScoreboardIoReader.java:141: error: NULL_DEREFERENCE
+  object returned by `scoreboard.getObjective(sidebar)` could be null and is dereferenced at line 141.
+  139.                   list -> scoreboard.getObjective(list).setDisplaySlot(DisplaySlot.PLAYER_LIST));
+  140.               data.readString("slot_1",
+  141. >                 sidebar -> scoreboard.getObjective(sidebar).setDisplaySlot(DisplaySlot.SIDEBAR));
+  142.               data.readString("slot_2",
+  143.                   below -> scoreboard.getObjective(below).setDisplaySlot(DisplaySlot.BELOW_NAME));
+
+src/main/java/net/glowstone/scoreboard/NbtScoreboardIoReader.java:143: error: NULL_DEREFERENCE
+  object returned by `scoreboard.getObjective(below)` could be null and is dereferenced at line 143.
+  141.                   sidebar -> scoreboard.getObjective(sidebar).setDisplaySlot(DisplaySlot.SIDEBAR));
+  142.               data.readString("slot_2",
+  143. >                 below -> scoreboard.getObjective(below).setDisplaySlot(DisplaySlot.BELOW_NAME));
+  144.   
+  145.               /* TODO: anything need to be done with team slots?
+
+src/main/java/net/glowstone/entity/meta/profile/GlowPlayerProfile.java:170: error: NULL_DEREFERENCE
+  object `id` last assigned on line 164 could be null and is dereferenced by call to `fromFlatString(...)` at line 170.
+  168.           UUID uuid;
+  169.           try {
+  170. >             uuid = UuidUtils.fromFlatString(id);
+  171.           } catch (IllegalArgumentException ex) {
+  172.               GlowServer.logger.log(Level.SEVERE, "Returned authentication UUID invalid: " + id);
+
+src/main/java/net/glowstone/entity/meta/profile/GlowPlayerProfile.java:177: error: NULL_DEREFERENCE
+  object `propsArray` last assigned on line 165 could be null and is dereferenced at line 177.
+  175.   
+  176.           // Parse properties
+  177. >         Collection<ProfileProperty> properties = new HashSet<>(propsArray.size());
+  178.           for (Object obj : propsArray) {
+  179.               JSONObject propJson = (JSONObject) obj;
+
+src/main/java/net/glowstone/io/anvil/AnvilChunkIoService.java:184: error: NULL_DEREFERENCE
+  object `sections` last assigned on line 183 could be null and is dereferenced at line 184.
+  182.           GlowChunkSnapshot snapshot = chunk.getChunkSnapshot(true, true, false);
+  183.           ChunkSection[] sections = snapshot.getRawSections();
+  184. >         for (byte i = 0; i < sections.length; ++i) {
+  185.               ChunkSection sec = sections[i];
+  186.               if (sec == null) {
+
+src/main/java/net/glowstone/generator/NetherGenerator.java:198: error: NULL_DEREFERENCE
+  object returned by `octaves.get("detail")` could be null and is dereferenced at line 198.
+  196.                   .getFractalBrownianMotion(x, 0, z, 0.5D, 2.0D);
+  197.           double[] detailNoise = ((PerlinOctaveGenerator) octaves.get("detail"))
+  198. >                 .getFractalBrownianMotion(x, 0, z, 0.5D, 2.0D);
+  199.   
+  200.           double[] nv = new double[17];
+
+src/main/java/net/glowstone/generator/NetherGenerator.java:192: error: NULL_DEREFERENCE
+  object returned by `octaves.get("height")` could be null and is dereferenced at line 192.
+  190.           Map<String, OctaveGenerator> octaves = getWorldOctaves(world);
+  191.           double[] heightNoise = ((PerlinOctaveGenerator) octaves.get("height"))
+  192. >                 .getFractalBrownianMotion(x, z, 0.5D, 2.0D);
+  193.           double[] roughnessNoise = ((PerlinOctaveGenerator) octaves.get("roughness"))
+  194.                   .getFractalBrownianMotion(x, 0, z, 0.5D, 2.0D);
+
+src/main/java/net/glowstone/generator/NetherGenerator.java:194: error: NULL_DEREFERENCE
+  object returned by `octaves.get("roughness")` could be null and is dereferenced at line 194.
+  192.                   .getFractalBrownianMotion(x, z, 0.5D, 2.0D);
+  193.           double[] roughnessNoise = ((PerlinOctaveGenerator) octaves.get("roughness"))
+  194. >                 .getFractalBrownianMotion(x, 0, z, 0.5D, 2.0D);
+  195.           double[] roughnessNoise2 = ((PerlinOctaveGenerator) octaves.get("roughness2"))
+  196.                   .getFractalBrownianMotion(x, 0, z, 0.5D, 2.0D);
+
+src/main/java/net/glowstone/generator/NetherGenerator.java:196: error: NULL_DEREFERENCE
+  object returned by `octaves.get("roughness2")` could be null and is dereferenced at line 196.
+  194.                   .getFractalBrownianMotion(x, 0, z, 0.5D, 2.0D);
+  195.           double[] roughnessNoise2 = ((PerlinOctaveGenerator) octaves.get("roughness2"))
+  196. >                 .getFractalBrownianMotion(x, 0, z, 0.5D, 2.0D);
+  197.           double[] detailNoise = ((PerlinOctaveGenerator) octaves.get("detail"))
+  198.                   .getFractalBrownianMotion(x, 0, z, 0.5D, 2.0D);
+
+src/main/java/net/glowstone/net/GlowBufUtils.java:202: error: RESOURCE_LEAK
+  resource of type `io.netty.buffer.ByteBufInputStream` acquired by call to `new()` at line 202 is not released after line 202.
+  200.   
+  201.           buf.readerIndex(idx);
+  202. >         try (NbtInputStream str = new NbtInputStream(new ByteBufInputStream(buf), false)) {
+  203.               return str.readCompound(
+  204.                       network ? new NbtReadLimiter(2097152L) : NbtReadLimiter.UNLIMITED);
+
+src/main/java/net/glowstone/entity/GlowHumanEntity.java:234: error: NULL_DEREFERENCE
+  object returned by `GlowHumanEntity.profile.getId()` could be null and is dereferenced at line 234.
+  232.       public void setUniqueId(UUID uuid) {
+  233.           // silently allow setting the same UUID again
+  234. >         if (!profile.getId().equals(uuid)) {
+  235.               throw new IllegalStateException(
+  236.                       "UUID of " + this + " is already " + UuidUtils.toString(profile.getId()));
+
+src/main/java/net/glowstone/net/GlowSession.java:286: error: NULL_DEREFERENCE
+  object returned by `GlowSession.player.getWorld()` could be null and is dereferenced at line 286.
+  284.           player.join(this, reader);
+  285.   
+  286. >         player.getWorld().getRawPlayers().add(player);
+  287.   
+  288.           online = true;
+
+src/main/java/net/glowstone/generator/OverworldGenerator.java:285: error: NULL_DEREFERENCE
+  object `octaveGenerator` last assigned on line 284 could be null and is dereferenced at line 285.
+  283.           SimplexOctaveGenerator octaveGenerator = ((SimplexOctaveGenerator) getWorldOctaves(world)
+  284.                   .get("surface"));
+  285. >         int sizeX = octaveGenerator.getSizeX();
+  286.           int sizeZ = octaveGenerator.getSizeZ();
+  287.           if (((GlowServer) ServerProvider.getServer()).doesUseGraphicsCompute()) {
+
+src/main/java/net/glowstone/io/anvil/RegionFile.java:295: error: RESOURCE_LEAK
+  resource of type `java.util.zip.Deflater` acquired by call to `Deflater(...)` at line 292 is not released after line 295.
+  293.                   COMPRESSION_ENABLED ? Deflater.BEST_SPEED : Deflater.NO_COMPRESSION);
+  294.           deflater.setStrategy(Deflater.HUFFMAN_ONLY);
+  295. >         DeflaterOutputStream dos = new DeflaterOutputStream(new ChunkBuffer(x, z), deflater, 2048) {
+  296.               @Override
+  297.               public void close() throws IOException {
+
+src/main/java/net/glowstone/net/GlowSession.java:329: error: NULL_DEREFERENCE
+  object returned by `sendWithFuture(message)` could be null and is dereferenced at line 329.
+  327.        */
+  328.       public void sendAndRelease(Message message, ByteBuf buf) {
+  329. >         sendWithFuture(message).addListener(f -> buf.release());
+  330.       }
+  331.   
+
+src/main/java/net/glowstone/block/blocktype/BlockType.java:335: error: NULL_DEREFERENCE
+  object returned by `instance().getBlock(target.getRelative(face.getOppositeFace()).getType())` could be null and is dereferenced at line 335.
+  333.           GlowBlock target = against.getRelative(face);
+  334.           final Material targetMat = ItemTable.instance().getBlock(
+  335. >             target.getRelative(face.getOppositeFace()).getType()).getMaterial();
+  336.   
+  337.           // prevent building above the height limit
+
+src/main/java/net/glowstone/net/GlowSession.java:339: error: NULL_DEREFERENCE
+  object returned by `sendWithFuture(message)` could be null and is dereferenced at line 339.
+  337.        */
+  338.       public void sendAndRelease(Message message, ByteBuf... bufs) {
+  339. >         sendWithFuture(message).addListener(f -> {
+  340.               for (ByteBuf buf : bufs) {
+  341.                   buf.release();
+
+src/main/java/net/glowstone/entity/meta/profile/GlowPlayerProfile.java:347: error: NULL_DEREFERENCE
+  object `GlowPlayerProfile.uniqueId` last assigned on line 346 could be null and is dereferenced at line 347.
+  345.       public boolean complete() {
+  346.           completeAsync();
+  347. >         uniqueId.join();
+  348.           return isComplete();
+  349.       }
+
+src/main/java/net/glowstone/entity/GlowHumanEntity.java:433: error: NULL_DEREFERENCE
+  object returned by `getTopInventory(this).getSlot(i)` could be null and is dereferenced at line 433.
+  431.   
+  432.       private boolean isDroppableCraftingSlot(int i) {
+  433. >         if (getTopInventory().getSlot(i).getType() == SlotType.CRAFTING) {
+  434.               switch (getTopInventory().getType()) {
+  435.                   case BREWING:
+
+src/main/java/net/glowstone/block/GlowBlock.java:464: error: NULL_DEREFERENCE
+  object returned by `instance().getBlock(getType())` could be null and is dereferenced at line 464.
+  462.        */
+  463.       public boolean breakNaturally(float yield) {
+  464. >         return breakNaturally(yield, ItemTable.instance().getBlock(getType()).getMinedDrops(this));
+  465.       }
+  466.   
+
+src/main/java/net/glowstone/generator/OverworldGenerator.java:511: error: NULL_DEREFERENCE
+  object returned by `octaves.get("detail")` could be null and is dereferenced at line 511.
+  509.                   .getFractalBrownianMotion(x, 0, z, 0.5D, 2.0D);
+  510.           double[] detailNoise = ((PerlinOctaveGenerator) octaves.get("detail"))
+  511. >                 .getFractalBrownianMotion(x, 0, z, 0.5D, 2.0D);
+  512.   
+  513.           int index = 0;
+
+src/main/java/net/glowstone/generator/OverworldGenerator.java:505: error: NULL_DEREFERENCE
+  object returned by `octaves.get("height")` could be null and is dereferenced at line 505.
+  503.           Map<String, OctaveGenerator> octaves = getWorldOctaves(world);
+  504.           double[] heightNoise = ((PerlinOctaveGenerator) octaves.get("height"))
+  505. >                 .getFractalBrownianMotion(x, z, 0.5D, 2.0D);
+  506.           double[] roughnessNoise = ((PerlinOctaveGenerator) octaves.get("roughness"))
+  507.                   .getFractalBrownianMotion(x, 0, z, 0.5D, 2.0D);
+
+src/main/java/net/glowstone/generator/OverworldGenerator.java:507: error: NULL_DEREFERENCE
+  object returned by `octaves.get("roughness")` could be null and is dereferenced at line 507.
+  505.                   .getFractalBrownianMotion(x, z, 0.5D, 2.0D);
+  506.           double[] roughnessNoise = ((PerlinOctaveGenerator) octaves.get("roughness"))
+  507. >                 .getFractalBrownianMotion(x, 0, z, 0.5D, 2.0D);
+  508.           double[] roughnessNoise2 = ((PerlinOctaveGenerator) octaves.get("roughness2"))
+  509.                   .getFractalBrownianMotion(x, 0, z, 0.5D, 2.0D);
+
+src/main/java/net/glowstone/generator/OverworldGenerator.java:509: error: NULL_DEREFERENCE
+  object returned by `octaves.get("roughness2")` could be null and is dereferenced at line 509.
+  507.                   .getFractalBrownianMotion(x, 0, z, 0.5D, 2.0D);
+  508.           double[] roughnessNoise2 = ((PerlinOctaveGenerator) octaves.get("roughness2"))
+  509. >                 .getFractalBrownianMotion(x, 0, z, 0.5D, 2.0D);
+  510.           double[] detailNoise = ((PerlinOctaveGenerator) octaves.get("detail"))
+  511.                   .getFractalBrownianMotion(x, 0, z, 0.5D, 2.0D);
+
+src/main/java/net/glowstone/block/GlowBlock.java:504: error: NULL_DEREFERENCE
+  object returned by `instance().getBlock(getType())` could be null and is dereferenced at line 504.
+  502.       @Override
+  503.       public Collection<ItemStack> getDrops() {
+  504. >         return ItemTable.instance().getBlock(getType()).getMinedDrops(this);
+  505.       }
+  506.   
+
+src/main/java/net/glowstone/block/GlowBlock.java:509: error: NULL_DEREFERENCE
+  object returned by `instance().getBlock(getType())` could be null and is dereferenced at line 509.
+  507.       @Override
+  508.       public Collection<ItemStack> getDrops(ItemStack tool) {
+  509. >         return ItemTable.instance().getBlock(getType()).getDrops(this, tool);
+  510.       }
+  511.   
+
+src/main/java/net/glowstone/net/GlowSession.java:522: error: RESOURCE_LEAK
+  resource of type `java.util.zip.Inflater` acquired by call to `CompressionHandler(...)` at line 522 is not released after line 522.
+  520.           if (!compresssionSent) {
+  521.               send(new SetCompressionMessage(threshold));
+  522. >             updatePipeline("compression", new CompressionHandler(threshold));
+  523.               compresssionSent = true;
+  524.           }
+
+src/main/java/net/glowstone/GlowWorld.java:539: error: NULL_DEREFERENCE
+  object `sections` last assigned on line 538 could be null and is dereferenced at line 539.
+  537.                   // we will choose 3 blocks per chunk's section
+  538.                   ChunkSection[] sections = chunk.getSections();
+  539. >                 for (int i = 0; i < sections.length; i++) {
+  540.                       updateBlocksInSection(chunk, sections[i], i);
+  541.                   }
+
+src/main/java/net/glowstone/GlowServer.java:952: error: NULL_DEREFERENCE
+  object `player.scoreboard` last assigned on line 952 could be null and is dereferenced by call to `kickPlayer(...)` at line 952.
+  950.           // Kick all players (this saves their data too)
+  951.           for (GlowPlayer player : new ArrayList<>(getRawOnlinePlayers())) {
+  952. >             player.kickPlayer(message, false);
+  953.           }
+  954.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1898: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.addExhaustion(float)` writes to field `this.exhaustion` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1896.       public void addExhaustion(float exhaustion) {
+  1897.           if (shouldCalculateExhaustion()) {
+  1898. >             this.exhaustion = Math.min(this.exhaustion + exhaustion, 40f);
+  1899.           }
+  1900.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1916: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.addMoveExhaustion(Location)` indirectly writes to field `this.exhaustion` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1914.               if (distanceSquared > 0) { // update packet and rotation
+  1915.                   double distance = Math.sqrt(distanceSquared);
+  1916. >                 addExhaustion((float) (0.1f * distance));
+  1917.               }
+  1918.           }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1912: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.addMoveExhaustion(Location)` reads without synchronization from `this.teleported`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1910.        */
+  1911.       public void addMoveExhaustion(Location move) {
+  1912. >         if (shouldCalculateExhaustion() && !teleported && isSprinting()) {
+  1913.               double distanceSquared = location.distanceSquared(move);
+  1914.               if (distanceSquared > 0) { // update packet and rotation
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2868: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.awardAchievement(Achievement)` indirectly mutates container `this.server.config.parameters` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2866.       @Override
+  2867.       public void awardAchievement(Achievement achievement) {
+  2868. >         awardAchievement(achievement, true);
+  2869.       }
+  2870.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2903: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean GlowPlayer.awardAchievement(Achievement,boolean)` indirectly mutates container `this.server.config.parameters` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2901.           sendAchievement(achievement, true);
+  2902.   
+  2903. >         if (server.getAnnounceAchievements()) {
+  2904.               // todo: make message fancier (hover)
+  2905.               server.broadcastMessage(GlowstoneMessages.Achievement.EARNED.get(
+
+src/main/java/net/glowstone/util/GlowHelpMap.java:89: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowHelpMap.clear()` mutates container `this.helpTopics` via call to `clear` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  87.       @Override
+  88.       public void clear() {
+  89. >         helpTopics.clear();
+  90.           topicFactoryMap.clear();
+  91.           ignoredPlugins.clear();
+
+src/main/java/net/glowstone/entity/meta/profile/GlowPlayerProfile.java:388: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean GlowPlayerProfile.completeCached()` indirectly reads without synchronization from `this.name`. Potentially races with write in method `GlowPlayerProfile.setName(...)`.
+ Reporting because this access may occur on a background thread.
+  386.               }
+  387.           }
+  388. >         return isComplete();
+  389.       }
+  390.   }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1474: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `List GlowPlayer.createSpawnMessage()` indirectly reads without synchronization from container `this.metadata.map` via call to `size`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1472.       @Override
+  1473.       public List<Message> createSpawnMessage() {
+  1474. >         List<Message> result = super.createSpawnMessage();
+  1475.           if (bed != null) {
+  1476.               result.add(new UseBedMessage(getEntityId(), bed.getX(), bed.getY(), bed.getZ()));
+
+src/main/java/net/glowstone/entity/GlowEntity.java:832: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `List GlowEntity.createUpdateMessage(GlowSession)` reads without synchronization from `this.teleported`. Potentially races with write in method `GlowEntity.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  830.           boolean rotated = hasRotated();
+  831.   
+  832. >         if (teleported || moved && teleport) {
+  833.               result.add(new EntityTeleportMessage(entityId, location));
+  834.           } else if (rotated) {
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:730: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.damage(double)` indirectly reads without synchronization from `this.health`. Potentially races with write in method `GlowPlayer.respawn()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  728.       @Override
+  729.       public void damage(double amount) {
+  730. >         damage(amount, DamageCause.CUSTOM);
+  731.       }
+  732.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:736: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.damage(double,Entity)` indirectly reads without synchronization from `this.health`. Potentially races with write in method `GlowPlayer.respawn()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  734.       public void damage(double amount, Entity cause) {
+  735.           super.damage(amount, cause);
+  736. >         sendHealth();
+  737.       }
+  738.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:753: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.damage(double,Entity,EntityDamageEvent$DamageCause)` indirectly writes to field `entity.active` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  751.               }
+  752.           }
+  753. >         super.damage(amount, source, cause);
+  754.       }
+  755.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:741: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.damage(double,Entity,EntityDamageEvent$DamageCause)` reads without synchronization from `this.world`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  739.       @Override
+  740.       public void damage(double amount, Entity source, DamageCause cause) {
+  741. >         boolean pvpAllowed = server.isPvpEnabled() && world.getPVP();
+  742.           if (!pvpAllowed) {
+  743.               if (source instanceof Player) {
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:759: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.damage(double,EntityDamageEvent$DamageCause)` indirectly reads without synchronization from `this.health`. Potentially races with write in method `GlowPlayer.respawn()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  757.       public void damage(double amount, DamageCause cause) {
+  758.           // todo: better idea
+  759. >         double old = getHealth();
+  760.           super.damage(amount, cause);
+  761.           if (old != getHealth()) {
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:762: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.damage(double,EntityDamageEvent$DamageCause)` indirectly writes to field `this.exhaustion` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  760.           super.damage(amount, cause);
+  761.           if (old != getHealth()) {
+  762. >             addExhaustion(0.1f);
+  763.               sendHealth();
+  764.               incrementStatistic(Statistic.DAMAGE_TAKEN, (int) Math.round(amount));
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:763: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.damage(double,EntityDamageEvent$DamageCause)` indirectly reads without synchronization from `this.foodLevel`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  761.           if (old != getHealth()) {
+  762.               addExhaustion(0.1f);
+  763. >             sendHealth();
+  764.               incrementStatistic(Statistic.DAMAGE_TAKEN, (int) Math.round(amount));
+  765.           }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3155: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `GlowItem GlowPlayer.drop(ItemStack)` indirectly reads without synchronization from `this.world`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3153.       @Override
+  3154.       public GlowItem drop(ItemStack stack) {
+  3155. >         GlowItem dropping = super.drop(stack);
+  3156.           if (dropping != null) {
+  3157.               PlayerDropItemEvent event = new PlayerDropItemEvent(this, dropping);
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3160: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `GlowItem GlowPlayer.drop(ItemStack)` indirectly writes to field `glowPassenger.fallDistance` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3158.               EventFactory.getInstance().callEvent(event);
+  3159.               if (event.isCancelled()) {
+  3160. >                 dropping.remove();
+  3161.                   dropping = null;
+  3162.               } else {
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1981: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.endTeleport()` writes to field `this.teleportedTo` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1979.       public void endTeleport() {
+  1980.           Position.copyLocation(teleportedTo, location);
+  1981. >         teleportedTo = null;
+  1982.           teleported = true;
+  1983.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1980: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.endTeleport()` reads without synchronization from `this.teleportedTo`. Potentially races with write in method `GlowPlayer.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1978.        */
+  1979.       public void endTeleport() {
+  1980. >         Position.copyLocation(teleportedTo, location);
+  1981.           teleportedTo = null;
+  1982.           teleported = true;
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1982: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.endTeleport()` writes to field `this.teleported` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1980.           Position.copyLocation(teleportedTo, location);
+  1981.           teleportedTo = null;
+  1982. >         teleported = true;
+  1983.       }
+  1984.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2053: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.enterBed(GlowBlock)` indirectly writes to field `section.count` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2051.   
+  2052.           // Occupy the bed
+  2053. >         BlockBed.setOccupied(head, foot, true);
+  2054.           bed = head;
+  2055.           sleeping = true;
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2056: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.enterBed(GlowBlock)` indirectly reads without synchronization from `this.boundingBox`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2054.           bed = head;
+  2055.           sleeping = true;
+  2056. >         setRawLocation(head.getLocation(), false);
+  2057.   
+  2058.           UseBedMessage msg = new UseBedMessage(getEntityId(), head.getX(), head.getY(), head.getZ());
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1594: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `ItemStack GlowPlayer.getActiveItem()` reads without synchronization from `this.usageItem`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1592.       @Override
+  1593.       public ItemStack getActiveItem() {
+  1594. >         return usageItem;
+  1595.       }
+  1596.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1526: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Location GlowPlayer.getBedSpawnLocation()` reads without synchronization from `this.bedSpawn`. Potentially races with write in method `GlowPlayer.respawn()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1524.       @Override
+  1525.       public Location getBedSpawnLocation() {
+  1526. >         if (bedSpawn == null) {
+  1527.               return null;
+  1528.           }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1540: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Location GlowPlayer.getBedSpawnLocation()` reads without synchronization from `this.bedSpawnForced`. Potentially races with write in method `GlowPlayer.respawn()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1538.                   return spawn == null ? null : spawn.getLocation().add(0.5, 0.1, 0.5);
+  1539.               }
+  1540. >             if (bedSpawnForced) {
+  1541.                   Material bottom = head.getType();
+  1542.                   Material top = head.getRelative(BlockFace.UP).getType();
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:390: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Location GlowPlayer.getCompassTarget()` reads without synchronization from `this.compassTarget`. Potentially races with write in method `GlowPlayer.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  388.        * The player's compass target.
+  389.        */
+  390. >     @Getter
+  391.       private Location compassTarget;
+  392.       /**
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:509: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `GlowBlock GlowPlayer.getDigging()` reads without synchronization from `this.digging`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  507.        * The one block the player is currently digging.
+  508.        */
+  509. >     @Getter
+  510.       private GlowBlock digging;
+  511.       /**
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:560: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `int GlowPlayer.getEnderPearlCooldown()` reads without synchronization from `this.enderPearlCooldown`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  558.        * The player can use ender pearl again if equals 0.
+  559.        */
+  560. >     @Getter
+  561.       @Setter
+  562.       private int enderPearlCooldown = 0;
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:346: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `float GlowPlayer.getExhaustion()` reads without synchronization from `this.exhaustion`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  344.        * The player's current exhaustion level.
+  345.        */
+  346. >     @Getter
+  347.       @Setter
+  348.       private float exhaustion;
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1658: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `double GlowPlayer.getEyeHeight()` indirectly reads without synchronization from container `this.metadata.map` via call to `get`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1656.       @Override
+  1657.       public double getEyeHeight() {
+  1658. >         return getEyeHeight(false);
+  1659.       }
+  1660.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1664: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `double GlowPlayer.getEyeHeight(boolean)` indirectly reads without synchronization from container `this.metadata.map` via call to `get`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1662.       public double getEyeHeight(boolean ignoreSneaking) {
+  1663.           // Height of player's eyes above feet. Matches CraftBukkit.
+  1664. >         if (ignoreSneaking || !isSneaking()) {
+  1665.               return 1.62;
+  1666.           } else {
+
+src/main/java/net/glowstone/entity/GlowEntity.java:248: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `float GlowEntity.getFallDistance()` reads without synchronization from `this.fallDistance`. Potentially races with write in method `GlowEntity.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  246.        * The distance the entity is currently falling without touching the ground.
+  247.        */
+  248. >     @Getter
+  249.       private float fallDistance;
+  250.       /**
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:341: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `int GlowPlayer.getFoodLevel()` reads without synchronization from `this.foodLevel`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  339.        * The human entity's current food level.
+  340.        */
+  341. >     @Getter
+  342.       private int foodLevel = 20;
+  343.       /**
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1609: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `int GlowPlayer.getHandRaisedTime()` reads without synchronization from `this.startingUsageTime`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1607.       @Override
+  1608.       public int getHandRaisedTime() {
+  1609. >         return startingUsageTime - usageTime;
+  1610.       }
+  1611.   
+
+src/main/java/net/glowstone/util/GlowHelpMap.java:78: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Collection GlowHelpMap.getHelpTopics()` reads without synchronization from container `this.helpTopics` via call to `values`. Potentially races with write in method `GlowHelpMap.initializeCommands()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  76.       @Override
+  77.       public Collection<HelpTopic> getHelpTopics() {
+  78. >         return helpTopics.values();
+  79.       }
+  80.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1604: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `int GlowPlayer.getItemUseRemainingTime()` reads without synchronization from `this.usageTime`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1602.       @Override
+  1603.       public int getItemUseRemainingTime() {
+  1604. >         return usageTime;
+  1605.       }
+  1606.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3098: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `MainHand GlowPlayer.getMainHand()` indirectly reads without synchronization from container `this.metadata.map` via call to `get`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3096.       @Override
+  3097.       public MainHand getMainHand() {
+  3098. >         return metadata.getByte(MetadataIndex.PLAYER_MAIN_HAND) == 0 ? MainHand.LEFT
+  3099.                   : MainHand.RIGHT;
+  3100.       }
+
+src/main/java/net/glowstone/entity/GlowEntity.java:1168: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `List GlowEntity.getNearbyEntities(double,double,double)` reads without synchronization from `this.world`. Potentially races with write in method `GlowEntity.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1166.           searchBox.maxCorner.add(vec);
+  1167.   
+  1168. >         return world.getEntityManager().getEntitiesInside(searchBox, this);
+  1169.       }
+  1170.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3181: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `long GlowPlayer.getPlayerTime()` reads without synchronization from `this.world`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3179.           if (playerTimeRelative) {
+  3180.               // add timeOffset ticks to current time
+  3181. >             return (world.getTime() + timeOffset) % TickUtil.TICKS_PER_DAY;
+  3182.           } else {
+  3183.               // return time offset
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:352: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `float GlowPlayer.getSaturation()` reads without synchronization from `this.saturation`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  350.        * The player's current saturation level.
+  351.        */
+  352. >     @Getter
+  353.       private float saturation;
+  354.       /**
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:527: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `int GlowPlayer.getStartingUsageTime()` reads without synchronization from `this.startingUsageTime`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  525.       @Getter
+  526.       private int usageTime;
+  527. >     @Getter
+  528.       private int startingUsageTime;
+  529.       private Entity spectating;
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:522: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `ItemStack GlowPlayer.getUsageItem()` reads without synchronization from `this.usageItem`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  520.        * The one itemstack the player is currently usage and associated time.
+  521.        */
+  522. >     @Getter
+  523.       @Setter
+  524.       private ItemStack usageItem;
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:525: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `int GlowPlayer.getUsageTime()` reads without synchronization from `this.usageTime`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  523.       @Setter
+  524.       private ItemStack usageItem;
+  525. >     @Getter
+  526.       private int usageTime;
+  527.       @Getter
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1337: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `UserListItemMessage$Entry GlowPlayer.getUserListEntry()` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1335.           TextMessage displayName = null;
+  1336.           if (playerListName != null && !playerListName.isEmpty()) {
+  1337. >             displayName = new TextMessage(playerListName);
+  1338.           }
+  1339.           return UserListItemMessage.add(getProfile(), getGameMode().getValue(), 0, displayName);
+
+src/main/java/net/glowstone/entity/GlowEntity.java:148: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `GlowWorld GlowEntity.getWorld()` reads without synchronization from `this.world`. Potentially races with write in method `GlowEntity.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  146.        * The world this entity belongs to. Guarded by {@link #worldLock}.
+  147.        */
+  148. >     @Getter
+  149.       protected GlowWorld world;
+  150.       /**
+
+src/main/java/net/glowstone/entity/GlowEntity.java:93: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `World GlowEntity.getWorld()` indirectly reads without synchronization from `this.world`. Potentially races with write in method `GlowEntity.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  91.    * @author Graham Edgecombe
+  92.    */
+  93. > public abstract class GlowEntity implements Entity {
+  94.       /**
+  95.        * An ID to use in network messages when the protocol calls for a 32-bit entity ID, but the
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:409: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean GlowPlayer.isBedSpawnForced()` reads without synchronization from `this.bedSpawnForced`. Potentially races with write in method `GlowPlayer.respawn()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  407.        * @return Whether the player is forced to spawn at their bed.
+  408.        */
+  409. >     @Getter
+  410.       private boolean bedSpawnForced;
+  411.       private final Player.Spigot spigot = new Player.Spigot() {
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1614: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean GlowPlayer.isHandRaised()` reads without synchronization from `this.usageTime`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1612.       @Override
+  1613.       public boolean isHandRaised() {
+  1614. >         return usageTime != 0;
+  1615.       }
+  1616.   
+
+src/main/java/net/glowstone/entity/GlowEntity.java:243: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean GlowEntity.isOnGround()` reads without synchronization from `this.onGround`. Potentially races with write in method `GlowEntity.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  241.        * A flag indicting if the entity is on the ground.
+  242.        */
+  243. >     @Getter
+  244.       private boolean onGround = false;
+  245.       /**
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1628: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean GlowPlayer.isSneaking()` indirectly reads without synchronization from container `this.metadata.map` via call to `get`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1626.       @Override
+  1627.       public boolean isSneaking() {
+  1628. >         return metadata.getBit(MetadataIndex.STATUS, StatusFlags.SNEAKING);
+  1629.       }
+  1630.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1643: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean GlowPlayer.isSprinting()` indirectly reads without synchronization from container `this.metadata.map` via call to `get`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1641.       @Override
+  1642.       public boolean isSprinting() {
+  1643. >         return metadata.getBit(MetadataIndex.STATUS, StatusFlags.SPRINTING);
+  1644.       }
+  1645.   
+
+src/main/java/net/glowstone/entity/GlowEntity.java:166: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean GlowEntity.isTeleported()` reads without synchronization from `this.teleported`. Potentially races with write in method `GlowEntity.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  164.        * Whether the entity should have its position resent as if teleported.
+  165.        */
+  166. >     @Getter
+  167.       protected boolean teleported;
+  168.       /**
+
+src/main/java/net/glowstone/entity/GlowEntity.java:989: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean GlowEntity.isTouchingMaterial(Material)` reads without synchronization from `this.world`. Potentially races with write in method `GlowEntity.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  987.                   for (int y = min.getBlockY(); y <= max.getBlockY(); ++y) {
+  988.                       for (int z = min.getBlockZ(); z <= max.getBlockZ(); ++z) {
+  989. >                         if (world.getBlockTypeIdAt(x, y, z) == material.getId()) {
+  990.                               return true;
+  991.                           }
+
+src/main/java/net/glowstone/entity/GlowEntity.java:401: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean GlowEntity.isValid()` reads without synchronization from `this.world`. Potentially races with write in method `GlowEntity.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  399.       @Override
+  400.       public boolean isValid() {
+  401. >         return world.getEntityManager().getEntity(entityId) == this;
+  402.       }
+  403.   
+
+src/main/java/net/glowstone/entity/GlowEntity.java:532: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean GlowEntity.isWithinDistance(GlowEntity)` indirectly reads without synchronization from `this.world`. Potentially races with write in method `GlowEntity.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  530.           if (other instanceof GlowLivingEntity) {
+  531.               return ((GlowLivingEntity) other).getDeathTicks() <= 20
+  532. >                 && isWithinDistance(other.location);
+  533.           } else {
+  534.               return !other.isDead() && (isWithinDistance(other.location)
+
+src/main/java/net/glowstone/entity/GlowEntity.java:548: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean GlowEntity.isWithinDistance(Location)` indirectly reads without synchronization from `this.world`. Potentially races with write in method `GlowEntity.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  546.           double dx = Math.abs(location.getX() - loc.getX());
+  547.           double dz = Math.abs(location.getZ() - loc.getZ());
+  548. >         return loc.getWorld() == getWorld() && dx <= server.getViewDistance() * GlowChunk.WIDTH
+  549.               && dz <= server.getViewDistance() * GlowChunk.HEIGHT;
+  550.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:698: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.join(GlowSession,PlayerDataService$PlayerReader)` indirectly writes to field `this.firstStream` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  696.           saveData();
+  697.   
+  698. >         streamBlocks(); // stream the initial set of blocks
+  699.           sendWeather();
+  700.           sendRainDensity();
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:668: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.join(GlowSession,PlayerDataService$PlayerReader)` reads without synchronization from `this.world`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  666.        */
+  667.       public void join(GlowSession session, PlayerReader reader) {
+  668. >         String type = world.getWorldType().getName().toLowerCase();
+  669.   
+  670.           reader.readData(this);
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:709: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.join(GlowSession,PlayerDataService$PlayerReader)` indirectly writes to field `this.compassTarget` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  707.           session.send(((GlowWorldBorder) world.getWorldBorder()).createMessage());
+  708.           sendTime();
+  709. >         setCompassTarget(world.getSpawnLocation()); // set our compass target
+  710.   
+  711.           scoreboard = server.getScoreboardManager().getMainScoreboard();
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:674: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.join(GlowSession,PlayerDataService$PlayerReader)` indirectly mutates container `this.server.config.parameters` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  672.   
+  673.           int gameMode = getGameMode().getValue();
+  674. >         if (server.isHardcore()) {
+  675.               gameMode |= 0x8;
+  676.           }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:714: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.join(GlowSession,PlayerDataService$PlayerReader)` indirectly reads without synchronization from `this.openInventory`. Potentially races with write in method `GlowPlayer.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  712.           scoreboard.subscribe(this);
+  713.   
+  714. >         invMonitor = new InventoryMonitor(getOpenInventory());
+  715.           updateInventory(); // send inventory contents
+  716.           session.send(recipeMonitor.createInitMessage());
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2259: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.kickPlayer(String)` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2257.       public void kickPlayer(String message) {
+  2258.           remove();
+  2259. >         session.disconnect(message == null ? "" : message);
+  2260.       }
+  2261.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2258: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.kickPlayer(String)` indirectly writes to field `glowPassenger.fallDistance` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2256.       @Override
+  2257.       public void kickPlayer(String message) {
+  2258. >         remove();
+  2259.           session.disconnect(message == null ? "" : message);
+  2260.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2264: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.kickPlayer(String,boolean)` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2262.       public void kickPlayer(String message, boolean async) {
+  2263.           remove(async);
+  2264. >         session.disconnect(message == null ? "" : message);
+  2265.       }
+  2266.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2263: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.kickPlayer(String,boolean)` indirectly writes to field `glowPassenger.fallDistance` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2261.   
+  2262.       public void kickPlayer(String message, boolean async) {
+  2263. >         remove(async);
+  2264.           session.disconnect(message == null ? "" : message);
+  2265.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2086: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.leaveBed(boolean)` indirectly writes to field `section.count` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2084.   
+  2085.           // Empty the bed
+  2086. >         BlockBed.setOccupied(head, foot, false);
+  2087.           bed = null;
+  2088.           sleeping = false;
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2082: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.leaveBed(boolean)` indirectly writes to field `this.bedSpawn` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2080.           // Set their spawn (normally omitted if their bed gets destroyed instead of them leaving it)
+  2081.           if (setSpawn) {
+  2082. >             setBedSpawnLocation(head.getLocation());
+  2083.           }
+  2084.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2092: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.leaveBed(boolean)` indirectly reads without synchronization from `this.boundingBox`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2090.           // And eject the player
+  2091.           Location exitLocation = exitBlock.getLocation().add(0.5, 0.1, 0.5); // Use center of block
+  2092. >         setRawLocation(exitLocation, false);
+  2093.           teleported = true;
+  2094.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3115: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.openInventory(InventoryView)` indirectly writes to field `this.openInventory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3113.           session.send(new CloseWindowMessage(invMonitor.getId()));
+  3114.   
+  3115. >         super.openInventory(view);
+  3116.   
+  3117.           invMonitor = new InventoryMonitor(getOpenInventory());
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3133: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.openInventory(InventoryView)` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3131.               }
+  3132.               Message open = new OpenWindowMessage(viewId, invMonitor
+  3133. >                     .getType(), title, ((GlowInventory) view.getTopInventory()).getRawSlots());
+  3134.               session.send(open);
+  3135.           }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1307: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.openSignEditor(Location)` indirectly reads without synchronization from `this.world`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1305.           // Client closes inventory when sign editor is opened
+  1306.           if (!GlowInventoryView.isDefault(getOpenInventory())) {
+  1307. >             closeInventory();
+  1308.           }
+  1309.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1306: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.openSignEditor(Location)` indirectly reads without synchronization from `this.openInventory`. Potentially races with write in method `GlowPlayer.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1304.   
+  1305.           // Client closes inventory when sign editor is opened
+  1306. >         if (!GlowInventoryView.isDefault(getOpenInventory())) {
+  1307.               closeInventory();
+  1308.           }
+
+src/main/java/net/glowstone/entity/GlowEntity.java:1175: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowEntity.playEffect(EntityEffect)` reads without synchronization from `this.world`. Potentially races with write in method `GlowEntity.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1173.           if (type.getApplicable().isInstance(this)) {
+  1174.               EntityStatusMessage message = new EntityStatusMessage(entityId, type);
+  1175. >             world.getRawPlayers().stream().filter(player -> player.canSeeEntity(this))
+  1176.                       .forEach(player -> player.getSession().send(message));
+  1177.           }
+
+src/main/java/net/glowstone/entity/GlowEntity.java:1186: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowEntity.playEffectKnownAndSelf(EntityEffect)` reads without synchronization from `this.world`. Potentially races with write in method `GlowEntity.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1184.                   ((GlowPlayer) this).getSession().send(message);
+  1185.               }
+  1186. >             world.getRawPlayers().stream().filter(player -> player.canSeeEntity(this))
+  1187.                       .forEach(player -> player.getSession().send(message));
+  1188.           }
+
+src/main/java/net/glowstone/entity/GlowEntity.java:590: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowEntity.pulse()` indirectly reads without synchronization from `this.world`. Potentially races with write in method `GlowEntity.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  588.           }
+  589.   
+  590. >         followLead();
+  591.   
+  592.           pulsePhysics();
+
+src/main/java/net/glowstone/entity/GlowEntity.java:580: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowEntity.pulse()` writes to field `this.teleported` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  578.           if (ticksLived % (30 * 20) == 0) {
+  579.               if (!(this instanceof GlowItemFrame || this instanceof GlowPainting)) {
+  580. >                 teleported = true;
+  581.               }
+  582.           }
+
+src/main/java/net/glowstone/entity/GlowEntity.java:592: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowEntity.pulse()` indirectly writes to field `this.fallDistance` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  590.           followLead();
+  591.   
+  592. >         pulsePhysics();
+  593.   
+  594.           if (hasMoved()) {
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:909: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.pulse()` indirectly writes to field `this.firstStream` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  907.   
+  908.           // stream world
+  909. >         streamBlocks();
+  910.           processBlockChanges();
+  911.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:842: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.pulse()` reads without synchronization from `this.digging`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because this access may occur on a background thread.
+  840.           }
+  841.   
+  842. >         if (digging != null) {
+  843.               pulseDigging();
+  844.           }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:847: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.pulse()` writes to field `this.exhaustion` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  845.   
+  846.           if (exhaustion > 4.0f) {
+  847. >             exhaustion -= 4.0f;
+  848.   
+  849.               if (saturation > 0f) {
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:843: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.pulse()` indirectly writes to field `section.count` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  841.   
+  842.           if (digging != null) {
+  843. >             pulseDigging();
+  844.           }
+  845.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:914: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.pulse()` indirectly reads without synchronization from container `this.metadata.map` via call to `containsKey`. Potentially races with write in method `GlowPlayer.setSprinting(...)`.
+ Reporting because this access may occur on a background thread.
+  912.           // add to playtime
+  913.           incrementStatistic(Statistic.PLAY_ONE_TICK);
+  914. >         if (isSneaking()) {
+  915.               incrementStatistic(Statistic.SNEAK_TIME);
+  916.           }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:846: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.pulse()` reads without synchronization from `this.exhaustion`. Potentially races with write in method `GlowPlayer.setExhaustion(...)`.
+ Reporting because this access may occur on a background thread.
+  844.           }
+  845.   
+  846. >         if (exhaustion > 4.0f) {
+  847.               exhaustion -= 4.0f;
+  848.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:905: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.pulse()` writes to field `this.enderPearlCooldown` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  903.           // process ender pearl cooldown, decrease by 1 every game tick.
+  904.           if (enderPearlCooldown > 0) {
+  905. >             enderPearlCooldown--;
+  906.           }
+  907.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:919: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.pulse()` reads without synchronization from `this.invMonitor`. Potentially races with write in method `GlowPlayer.join(...)`.
+ Reporting because this access may occur on a background thread.
+  917.   
+  918.           // update inventory
+  919. >         for (InventoryMonitor.Entry entry : invMonitor.getChanges()) {
+  920.               sendItemChange(entry.slot, entry.item);
+  921.           }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:904: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.pulse()` reads without synchronization from `this.enderPearlCooldown`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because this access may occur on a background thread.
+  902.   
+  903.           // process ender pearl cooldown, decrease by 1 every game tick.
+  904. >         if (enderPearlCooldown > 0) {
+  905.               enderPearlCooldown--;
+  906.           }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:975: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.pulse()` reads without synchronization from `this.passengerChanged`. Potentially races with write in method `GlowPlayer.kickPlayer(...)`.
+ Reporting because this access may occur on a background thread.
+  973.           }
+  974.   
+  975. >         if (passengerChanged) {
+  976.               session.send(new SetPassengerMessage(getEntityId(), getPassengers().stream()
+  977.                       .mapToInt(Entity::getEntityId).toArray()));
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:987: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.pulse()` indirectly writes to field `oldHook.active` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  985.               if (getInventory().getItemInMainHand().getType() != Material.FISHING_ROD
+  986.                       && getInventory().getItemInOffHand().getType() != Material.FISHING_ROD) {
+  987. >                 setCurrentFishingHook(null);
+  988.               }
+  989.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:830: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.pulse()` writes to field `this.usageTime` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  828.           if (usageItem != null) {
+  829.               if (usageItem.equals(getItemInHand())) { //todo: implement offhand
+  830. >                 if (--usageTime == 0) {
+  831.                       ItemType item = ItemTable.instance().getItem(usageItem.getType());
+  832.                       if (item instanceof ItemFood) {
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:833: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.pulse()` indirectly reads without synchronization from `this.health`. Potentially races with write in method `GlowPlayer.damage(...)`.
+ Reporting because this access may occur on a background thread.
+  831.                       ItemType item = ItemTable.instance().getItem(usageItem.getType());
+  832.                       if (item instanceof ItemFood) {
+  833. >                         ((ItemFood) item).eat(this, usageItem);
+  834.                       }
+  835.                   }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:910: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.pulse()` indirectly mutates container `map` via call to `put` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  908.           // stream world
+  909.           streamBlocks();
+  910. >         processBlockChanges();
+  911.   
+  912.           // add to playtime
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:825: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.pulse()` indirectly writes to field `glowPassenger.fallDistance` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  823.       @Override
+  824.       public void pulse() {
+  825. >         super.pulse();
+  826.           incrementStatistic(Statistic.TIME_SINCE_DEATH);
+  827.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:937: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.pulse()` indirectly reads with synchronization from container `this.server.config.parameters` via call to `get`. Potentially races with unsynchronized write in method `GlowPlayer.pulse()`.
+ Reporting because this access may occur on a background thread.
+  935.               for (Iterator<GlowEntity> it = knownEntities.iterator(); it.hasNext(); ) {
+  936.                   GlowEntity entity = it.next();
+  937. >                 if (!isWithinDistance(entity) || entity.isRemoved()) {
+  938.                       destroyEntities.add(entity);
+  939.                   } else {
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:828: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.pulse()` reads without synchronization from `this.usageItem`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because this access may occur on a background thread.
+  826.           incrementStatistic(Statistic.TIME_SINCE_DEATH);
+  827.   
+  828. >         if (usageItem != null) {
+  829.               if (usageItem.equals(getItemInHand())) { //todo: implement offhand
+  830.                   if (--usageTime == 0) {
+
+src/main/java/net/glowstone/entity/GlowEntity.java:1078: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowEntity.pulsePhysics()` indirectly writes to field `this.fallDistance` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1076.                   }
+  1077.               }
+  1078. >             setRawLocation(pendingLocation);
+  1079.           }
+  1080.       }
+
+src/main/java/net/glowstone/entity/GlowEntity.java:1059: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowEntity.pulsePhysics()` indirectly reads without synchronization from `this.onGround`. Potentially races with write in method `GlowEntity.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1057.                       }
+  1058.   
+  1059. >                     if (isOnGround()) {
+  1060.                           velocity.setX(velocity.getX() * slipMultiplier);
+  1061.                           velocity.setY(0);
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1000: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.pulsePhysics()` indirectly reads without synchronization from `this.boundingBox`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  998.           // trust the client with physics
+  999.           // just update the bounding box
+  1000. >         updateBoundingBox();
+  1001.       }
+  1002.   
+
+src/main/java/net/glowstone/entity/GlowEntity.java:1131: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowEntity.remove()` reads without synchronization from `this.world`. Potentially races with write in method `GlowEntity.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1129.           active = false;
+  1130.           boundingBox = null;
+  1131. >         world.getEntityManager().unregister(this);
+  1132.           server.getEntityIdManager().deallocate(this);
+  1133.           this.setPassenger(null);
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:793: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.remove()` indirectly writes to field `glowPassenger.fallDistance` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  791.           }
+  792.           clearBossBars();
+  793. >         super.remove();
+  794.       }
+  795.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:780: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.remove()` reads without synchronization from `this.chunkLock`. Potentially races with write in method `GlowPlayer.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  778.       public void remove() {
+  779.           knownChunks.clear();
+  780. >         chunkLock.clear();
+  781.           saveData();
+  782.           getInventory().removeViewer(this);
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:786: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.remove()` indirectly reads without synchronization from `this.world`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  784.           permissions.clearPermissions();
+  785.           getServer().setPlayerOnline(this, false);
+  786. >         getWorld().getRawPlayers().remove(this);
+  787.   
+  788.           if (scoreboard != null) {
+
+src/main/java/net/glowstone/entity/monster/GlowBoss.java:76: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowBoss.remove()` indirectly reads without synchronization from `this.world`. Potentially races with write in method `GlowBoss.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  74.       public void remove() {
+  75.           bar.removeAll();
+  76. >         super.remove();
+  77.       }
+  78.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:815: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.remove(boolean)` indirectly writes to field `glowPassenger.fallDistance` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  813.           }
+  814.           clearBossBars();
+  815. >         super.remove();
+  816.       }
+  817.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:803: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.remove(boolean)` reads without synchronization from `this.chunkLock`. Potentially races with write in method `GlowPlayer.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  801.       public void remove(boolean async) {
+  802.           knownChunks.clear();
+  803. >         chunkLock.clear();
+  804.           saveData(async);
+  805.           getInventory().removeViewer(this);
+
+src/main/java/net/glowstone/entity/GlowEntity.java:682: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowEntity.reset()` writes to field `this.teleported` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  680.           Position.copyLocation(location, previousLocation);
+  681.           metadata.resetChanges();
+  682. >         teleported = false;
+  683.           velocityChanged = false;
+  684.           leashHolderChanged = false;
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3195: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.resetPlayerTime()` indirectly reads without synchronization from `this.world`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3193.       @Override
+  3194.       public void resetPlayerTime() {
+  3195. >         setPlayerTime(0, true);
+  3196.       }
+  3197.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3223: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.resetPlayerWeather()` indirectly reads without synchronization from `this.world`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3221.       public void resetPlayerWeather() {
+  3222.           playerWeather = null;
+  3223. >         sendWeather();
+  3224.           sendRainDensity();
+  3225.           sendSkyDarkness();
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1217: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.respawn()` indirectly writes to field `this.foodLevel` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  1215.           // restore health
+  1216.           setHealth(getMaxHealth());
+  1217. >         setFoodLevel(20);
+  1218.   
+  1219.           // reset fire ticks
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1220: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.respawn()` indirectly writes to field `this.fireTicks` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  1218.   
+  1219.           // reset fire ticks
+  1220. >         setFireTicks(0);
+  1221.   
+  1222.           worldLock.writeLock().lock();
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1256: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.respawn()` indirectly reads with synchronization from `this.boundingBox`. Potentially races with unsynchronized write in method `GlowPlayer.pulse()`.
+ Reporting because this access may occur on a background thread.
+  1254.               deathTicks = 0;
+  1255.               setStatistic(Statistic.TIME_SINCE_DEATH, 0);
+  1256. >             spawnAt(event.getRespawnLocation());
+  1257.           } finally {
+  1258.               worldLock.writeLock().unlock();
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1216: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.respawn()` indirectly writes to field `entity.active` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  1214.   
+  1215.           // restore health
+  1216. >         setHealth(getMaxHealth());
+  1217.           setFoodLevel(20);
+  1218.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1261: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.respawn()` indirectly reads without synchronization from `this.invMonitor`. Potentially races with write in method `GlowPlayer.join(...)`.
+ Reporting because this access may occur on a background thread.
+  1259.           }
+  1260.           // just in case any items are left in their inventory after they respawn
+  1261. >         updateInventory();
+  1262.       }
+  1263.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1211: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.respawn()` indirectly reads without synchronization from `this.active`. Potentially races with write in method `GlowPlayer.kickPlayer(...)`.
+ Reporting because this access may occur on a background thread.
+  1209.        */
+  1210.       public void respawn() {
+  1211. >         if (!isDead()) {
+  1212.               return;
+  1213.           }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2658: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.sendBlockEntityChange(Location,GlowBlockEntity,CompoundTag)` mutates container `this.afterBlockChanges` via call to `add` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2656.           checkNotNull(nbt, "NBT cannot be null");
+  2657.   
+  2658. >         afterBlockChanges.add(new UpdateBlockEntityMessage(location.getBlockX(), location
+  2659.                   .getBlockY(), location.getBlockZ(), type.getValue(), nbt));
+  2660.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2110: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.sendMessage(java.lang.String[])` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2108.       public void sendMessage(String[] messages) {
+  2109.           for (String line : messages) {
+  2110. >             sendMessage(line);
+  2111.           }
+  2112.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2121: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.sendMessage(net.md_5.bungee.api.chat.BaseComponent[])` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2119.       @Override
+  2120.       public void sendMessage(BaseComponent... components) {
+  2121. >         sendMessage(ChatMessageType.CHAT, components);
+  2122.       }
+  2123.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2104: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.sendMessage(String)` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2102.       @Override
+  2103.       public void sendMessage(String message) {
+  2104. >         sendRawMessage(message);
+  2105.       }
+  2106.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2127: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.sendMessage(ChatMessageType,net.md_5.bungee.api.chat.BaseComponent[])` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2125.       public void sendMessage(ChatMessageType chatMessageType, BaseComponent... baseComponents) {
+  2126.           session.send(new ChatMessage(TextMessage
+  2127. >                 .decode(ComponentSerializer.toString(baseComponents)), chatMessageType.ordinal()));
+  2128.       }
+  2129.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2116: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.sendMessage(BaseComponent)` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2114.       @Override
+  2115.       public void sendMessage(BaseComponent component) {
+  2116. >         sendMessage(ChatMessageType.CHAT, component);
+  2117.       }
+  2118.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3238: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.sendRainDensity()` indirectly reads without synchronization from `this.world`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3236.   
+  3237.       public void sendRainDensity() {
+  3238. >         session.send(new StateChangeMessage(Reason.RAIN_DENSITY, getWorld().getRainDensity()));
+  3239.       }
+  3240.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2133: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.sendRawMessage(String)` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2131.       public void sendRawMessage(String message) {
+  2132.           // old-style formatting to json conversion is in TextMessage
+  2133. >         session.send(new ChatMessage(message));
+  2134.       }
+  2135.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2642: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.sendSignChange(SignEntity,Location,net.glowstone.util.TextMessage[])` mutates container `this.afterBlockChanges` via call to `add` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2640.           CompoundTag tag = new CompoundTag();
+  2641.           sign.saveNbt(tag);
+  2642. >         afterBlockChanges.add(new UpdateBlockEntityMessage(location.getBlockX(), location
+  2643.                   .getBlockY(), location.getBlockZ(), GlowBlockEntity.SIGN.getValue(), tag));
+  2644.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2620: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.sendSignChange(Location,java.lang.String[])` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2618.   
+  2619.           afterBlockChanges.add(UpdateSignMessage
+  2620. >                 .fromPlainText(location.getBlockX(), location.getBlockY(), location
+  2621.                           .getBlockZ(), lines));
+  2622.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2619: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.sendSignChange(Location,java.lang.String[])` mutates container `this.afterBlockChanges` via call to `add` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2617.           checkArgument(lines.length == 4, "lines.length must equal 4");
+  2618.   
+  2619. >         afterBlockChanges.add(UpdateSignMessage
+  2620.                   .fromPlainText(location.getBlockX(), location.getBlockY(), location
+  2621.                           .getBlockZ(), lines));
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3245: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.sendSkyDarkness()` indirectly reads without synchronization from `this.world`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3243.   
+  3244.       public void sendSkyDarkness() {
+  3245. >         session.send(new StateChangeMessage(Reason.SKY_DARKNESS, getWorld().getSkyDarkness()));
+  3246.       }
+  3247.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3202: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.sendTime()` indirectly reads without synchronization from `this.world`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3200.        */
+  3201.       public void sendTime() {
+  3202. >         long time = getPlayerTime();
+  3203.           if (!playerTimeRelative || !world.getGameRuleMap().getBoolean(GameRules.DO_DAYLIGHT_CYCLE)) {
+  3204.               time *= -1; // negative value indicates fixed time
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2749: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.sendTitle()` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2747.        */
+  2748.       public void sendTitle() {
+  2749. >         sendTitle(currentTitle);
+  2750.           currentTitle = new Title.Builder();
+  2751.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2723: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.sendTitle(Title)` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2721.       @Override
+  2722.       public void sendTitle(Title title) {
+  2723. >         session.sendAll(TitleMessage.fromTitle(title));
+  2724.       }
+  2725.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2742: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.sendTitle(Title$Builder)` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2740.        */
+  2741.       public void sendTitle(Title.Builder title) {
+  2742. >         sendTitle(title.build());
+  2743.       }
+  2744.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2728: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.sendTitle(String,String)` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2726.       @Override
+  2727.       public void sendTitle(String title, String subtitle) {
+  2728. >         sendTitle(new Title(title, subtitle));
+  2729.       }
+  2730.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2733: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.sendTitle(String,String,int,int,int)` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2731.       @Override
+  2732.       public void sendTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut) {
+  2733. >         sendTitle(new Title(title, subtitle, fadeIn, stay, fadeOut));
+  2734.       }
+  2735.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3232: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.sendWeather()` indirectly reads without synchronization from `this.world`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3230.        */
+  3231.       public void sendWeather() {
+  3232. >         boolean stormy = playerWeather == null ? getWorld().hasStorm()
+  3233.                   : playerWeather == WeatherType.DOWNFALL;
+  3234.           session.send(new StateChangeMessage(stormy ? Reason.START_RAIN : Reason.STOP_RAIN, 0));
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1557: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setBedSpawnLocation(Location)` indirectly writes to field `this.bedSpawn` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1555.       @Override
+  1556.       public void setBedSpawnLocation(Location bedSpawn) {
+  1557. >         setBedSpawnLocation(bedSpawn, false);
+  1558.       }
+  1559.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1563: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setBedSpawnLocation(Location,boolean)` writes to field `this.bedSpawnForced` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1561.       public void setBedSpawnLocation(Location location, boolean force) {
+  1562.           bedSpawn = location;
+  1563. >         bedSpawnForced = force;
+  1564.       }
+  1565.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1562: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setBedSpawnLocation(Location,boolean)` writes to field `this.bedSpawn` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1560.       @Override
+  1561.       public void setBedSpawnLocation(Location location, boolean force) {
+  1562. >         bedSpawn = location;
+  1563.           bedSpawnForced = force;
+  1564.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1520: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setCompassTarget(Location)` writes to field `this.compassTarget` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1518.       @Override
+  1519.       public void setCompassTarget(Location loc) {
+  1520. >         compassTarget = loc;
+  1521.           session.send(new SpawnPositionMessage(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()));
+  1522.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3692: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setCurrentFishingHook(GlowFishingHook)` indirectly writes to field `oldHook.active` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3690.           GlowFishingHook oldHook = currentFishingHook.getAndSet(fishingHook);
+  3691.           if (oldHook != null && !(oldHook.equals(fishingHook)) && !oldHook.isDead()) {
+  3692. >             oldHook.remove();
+  3693.           }
+  3694.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3691: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.setCurrentFishingHook(GlowFishingHook)` indirectly reads without synchronization from `oldHook.active`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3689.       public void setCurrentFishingHook(GlowFishingHook fishingHook) {
+  3690.           GlowFishingHook oldHook = currentFishingHook.getAndSet(fishingHook);
+  3691. >         if (oldHook != null && !(oldHook.equals(fishingHook)) && !oldHook.isDead()) {
+  3692.               oldHook.remove();
+  3693.           }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3476: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.setDigging(GlowBlock)` reads without synchronization from `this.digging`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3474.        */
+  3475.       public void setDigging(GlowBlock block) {
+  3476. >         if (Objects.equals(block, digging)) {
+  3477.               return;
+  3478.           }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3518: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setDigging(GlowBlock)` writes to field `this.totalDiggingTicks` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3516.               }
+  3517.               // TODO: status effects (e.g. Mining Fatigue, Slowness); effect of underwater digging
+  3518. >             totalDiggingTicks = (long)
+  3519.                   (breakingTimeMultiplier * hardness * 20.0 + 0.5); // seconds to ticks, round half-up
+  3520.               // show other clients the block is beginning to crack
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3524: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setDigging(GlowBlock)` writes to field `this.diggingTicks` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3522.           }
+  3523.   
+  3524. >         diggingTicks = 0;
+  3525.           digging = block;
+  3526.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3525: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setDigging(GlowBlock)` writes to field `this.digging` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3523.   
+  3524.           diggingTicks = 0;
+  3525. >         digging = block;
+  3526.       }
+  3527.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:561: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setEnderPearlCooldown(int)` writes to field `this.enderPearlCooldown` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  559.        */
+  560.       @Getter
+  561. >     @Setter
+  562.       private int enderPearlCooldown = 0;
+  563.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:347: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setExhaustion(float)` writes to field `this.exhaustion` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  345.        */
+  346.       @Getter
+  347. >     @Setter
+  348.       private float exhaustion;
+  349.       /**
+
+src/main/java/net/glowstone/entity/GlowEntity.java:1108: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowEntity.setFallDistance(float)` writes to field `this.fallDistance` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1106.       @Override
+  1107.       public void setFallDistance(float distance) {
+  1108. >         fallDistance = Math.max(distance, 0);
+  1109.       }
+  1110.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1878: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setFoodLevel(int)` writes to field `this.foodLevel` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1876.       @Override
+  1877.       public void setFoodLevel(int food) {
+  1878. >         this.foodLevel = Math.min(food, 20);
+  1879.           sendHealth();
+  1880.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1879: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.setFoodLevel(int)` indirectly reads without synchronization from `this.health`. Potentially races with write in method `GlowPlayer.respawn()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1877.       public void setFoodLevel(int food) {
+  1878.           this.foodLevel = Math.min(food, 20);
+  1879. >         sendHealth();
+  1880.       }
+  1881.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1872: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.setFoodLevelAndSaturation(int,float)` reads without synchronization from `this.foodLevel`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1870.       public void setFoodLevelAndSaturation(int food, float saturation) {
+  1871.           this.foodLevel = Math.max(Math.min(food, 20), 0);
+  1872. >         this.saturation = Math.min(this.saturation + food * saturation * 2.0F, this.foodLevel);
+  1873.           sendHealth();
+  1874.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1871: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setFoodLevelAndSaturation(int,float)` writes to field `this.foodLevel` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1869.        */
+  1870.       public void setFoodLevelAndSaturation(int food, float saturation) {
+  1871. >         this.foodLevel = Math.max(Math.min(food, 20), 0);
+  1872.           this.saturation = Math.min(this.saturation + food * saturation * 2.0F, this.foodLevel);
+  1873.           sendHealth();
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1873: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.setFoodLevelAndSaturation(int,float)` indirectly reads without synchronization from `this.health`. Potentially races with write in method `GlowPlayer.respawn()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1871.           this.foodLevel = Math.max(Math.min(food, 20), 0);
+  1872.           this.saturation = Math.min(this.saturation + food * saturation * 2.0F, this.foodLevel);
+  1873. >         sendHealth();
+  1874.       }
+  1875.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1585: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setGameMode(GameMode)` indirectly writes to field `this.fallDistance` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1583.   
+  1584.               super.setGameMode(mode);
+  1585. >             super.setFallDistance(0);
+  1586.               updateUserListEntries(UserListItemMessage.gameModeOne(getUniqueId(), mode.getValue()));
+  1587.               session.send(new StateChangeMessage(Reason.GAMEMODE, mode.getValue()));
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1831: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.setHealth(double)` indirectly reads without synchronization from `this.health`. Potentially races with write in method `GlowPlayer.respawn()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1829.       public void setHealth(double health) {
+  1830.           super.setHealth(health);
+  1831. >         sendHealth();
+  1832.       }
+  1833.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1830: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setHealth(double)` indirectly writes to field `entity.active` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1828.       @Override
+  1829.       public void setHealth(double health) {
+  1830. >         super.setHealth(health);
+  1831.           sendHealth();
+  1832.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1850: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.setHealthScale(double)` indirectly reads without synchronization from `this.health`. Potentially races with write in method `GlowPlayer.respawn()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1848.           healthScaled = true;
+  1849.           healthScale = scale;
+  1850. >         sendHealth();
+  1851.       }
+  1852.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1843: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.setHealthScaled(boolean)` indirectly reads without synchronization from `this.health`. Potentially races with write in method `GlowPlayer.respawn()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1841.       public void setHealthScaled(boolean scale) {
+  1842.           healthScaled = scale;
+  1843. >         sendHealth();
+  1844.       }
+  1845.   
+
+src/main/java/net/glowstone/entity/meta/profile/GlowPlayerProfile.java:242: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `UUID GlowPlayerProfile.setId(UUID)` reads without synchronization from `this.name`. Potentially races with write in method `GlowPlayerProfile.setName(...)`.
+ Reporting because this access may occur on a background thread.
+  240.       @Override
+  241.       public UUID setId(@Nullable UUID uuid) {
+  242. >         checkOwnerCriteria(name,uuid);
+  243.           UUID oldUuid = null;
+  244.           if (uniqueId == null) {
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3077: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setItemOnCursor(ItemStack)` indirectly writes to field `this.itemOnCursor` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3075.       @Override
+  3076.       public void setItemOnCursor(ItemStack item) {
+  3077. >         super.setItemOnCursor(item);
+  3078.           session.send(new SetWindowSlotMessage(-1, -1, item));
+  3079.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1837: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.setMaxHealth(double)` indirectly reads without synchronization from `this.health`. Potentially races with write in method `GlowPlayer.respawn()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1835.       public void setMaxHealth(double health) {
+  1836.           super.setMaxHealth(health);
+  1837. >         sendHealth();
+  1838.       }
+  1839.   
+
+src/main/java/net/glowstone/entity/GlowEntity.java:1120: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowEntity.setOnGround(boolean)` writes to field `this.onGround` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1118.               setFallDistance(0);
+  1119.           }
+  1120. >         this.onGround = onGround;
+  1121.       }
+  1122.   
+
+src/main/java/net/glowstone/entity/GlowEntity.java:1118: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowEntity.setOnGround(boolean)` indirectly writes to field `this.fallDistance` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1116.       public void setOnGround(boolean onGround) {
+  1117.           if (this.onGround != onGround) {
+  1118. >             setFallDistance(0);
+  1119.           }
+  1120.           this.onGround = onGround;
+
+src/main/java/net/glowstone/entity/GlowEntity.java:1117: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowEntity.setOnGround(boolean)` reads without synchronization from `this.onGround`. Potentially races with write in method `GlowEntity.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1115.        */
+  1116.       public void setOnGround(boolean onGround) {
+  1117. >         if (this.onGround != onGround) {
+  1118.               setFallDistance(0);
+  1119.           }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3459: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setOnGround(boolean)` indirectly writes to field `this.fallDistance` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3457.       @Override
+  3458.       public void setOnGround(boolean onGround) {
+  3459. >         super.setOnGround(onGround);
+  3460.           int fallDistance = Math.round(getFallDistance());
+  3461.           this.incrementStatistic(Statistic.FALL_ONE_CM, fallDistance);
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2672: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setPlayerListHeaderFooter(net.md_5.bungee.api.chat.BaseComponent[],net.md_5.bungee.api.chat.BaseComponent[])` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2670.       @Override
+  2671.       public void setPlayerListHeaderFooter(BaseComponent[] header, BaseComponent[] footer) {
+  2672. >         TextMessage h = TextMessage.decode(ComponentSerializer.toString(header));
+  2673.           TextMessage f = TextMessage.decode(ComponentSerializer.toString(footer));
+  2674.           session.send(new UserListHeaderFooterMessage(h, f));
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2679: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setPlayerListHeaderFooter(BaseComponent,BaseComponent)` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2677.       @Override
+  2678.       public void setPlayerListHeaderFooter(BaseComponent header, BaseComponent footer) {
+  2679. >         setPlayerListHeaderFooter(new BaseComponent[]{header}, new BaseComponent[]{footer});
+  2680.       }
+  2681.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1513: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setPlayerListName(String)` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1511.           TextMessage displayName = null;
+  1512.           if (playerListName != null && !playerListName.isEmpty()) {
+  1513. >             displayName = new TextMessage(playerListName);
+  1514.           }
+  1515.           updateUserListEntries(UserListItemMessage.displayNameOne(getUniqueId(), displayName));
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3174: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.setPlayerTime(long,boolean)` indirectly reads without synchronization from `this.world`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3172.                   % TickUtil.TICKS_PER_DAY;
+  3173.           playerTimeRelative = relative;
+  3174. >         sendTime();
+  3175.       }
+  3176.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3217: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.setPlayerWeather(WeatherType)` indirectly reads without synchronization from `this.world`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3215.       public void setPlayerWeather(WeatherType type) {
+  3216.           playerWeather = type;
+  3217. >         sendWeather();
+  3218.       }
+  3219.   
+
+src/main/java/net/glowstone/entity/GlowEntity.java:746: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowEntity.setRawLocation(Location)` indirectly writes to field `this.fallDistance` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  744.        */
+  745.       public void setRawLocation(Location location) {
+  746. >         setRawLocation(location, true);
+  747.       }
+  748.   
+
+src/main/java/net/glowstone/entity/GlowEntity.java:717: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowEntity.setRawLocation(Location,boolean)` reads without synchronization from `this.onGround`. Potentially races with write in method `GlowEntity.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  715.   
+  716.           if (hasMoved()) {
+  717. >             if (!fall || type == Material.LADDER // todo: horses are not affected
+  718.                   || type == Material.VINE // todo: horses are not affected
+  719.                   || type == Material.WATER || type == Material.STATIONARY_WATER
+
+src/main/java/net/glowstone/entity/GlowEntity.java:694: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowEntity.setRawLocation(Location,boolean)` reads without synchronization from `this.world`. Potentially races with write in method `GlowEntity.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  692.        */
+  693.       public void setRawLocation(Location location, boolean fall) {
+  694. >         if (location.getWorld() != world) {
+  695.               throw new IllegalArgumentException(
+  696.                   "Cannot setRawLocation to a different world (got " + location.getWorld()
+
+src/main/java/net/glowstone/entity/GlowEntity.java:724: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowEntity.setRawLocation(Location,boolean)` indirectly writes to field `this.fallDistance` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  722.                   setFallDistance(0);
+  723.               } else if (location.getY() < previousLocation.getY() && !isInsideVehicle()) {
+  724. >                 setFallDistance((float) (fallDistance + previousLocation.getY() - location.getY()));
+  725.               }
+  726.           }
+
+src/main/java/net/glowstone/entity/GlowEntity.java:736: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowEntity.setRawLocation(Location,boolean)` indirectly writes to field `this.onGround` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  734.   
+  735.               Location detectLocation = location.clone().add(0, -detectOffsetY, 0);
+  736. >             setOnGround(detectLocation.getBlock().getType().isSolid());
+  737.           }
+  738.       }
+
+src/main/java/net/glowstone/entity/GlowEntity.java:704: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowEntity.setRawLocation(Location,boolean)` reads without synchronization from `this.teleported`. Potentially races with write in method `GlowEntity.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  702.           }
+  703.   
+  704. >         if (teleported) {
+  705.               teleported = false;
+  706.           }
+
+src/main/java/net/glowstone/entity/GlowEntity.java:705: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowEntity.setRawLocation(Location,boolean)` writes to field `this.teleported` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  703.   
+  704.           if (teleported) {
+  705. >             teleported = false;
+  706.           }
+  707.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1924: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.setSaturation(float)` indirectly reads without synchronization from `this.health`. Potentially races with write in method `GlowPlayer.respawn()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1922.       public void setSaturation(float value) {
+  1923.           saturation = Math.min(value, foodLevel);
+  1924. >         sendHealth();
+  1925.       }
+  1926.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1923: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.setSaturation(float)` reads without synchronization from `this.foodLevel`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1921.       @Override
+  1922.       public void setSaturation(float value) {
+  1923. >         saturation = Math.min(value, foodLevel);
+  1924.           sendHealth();
+  1925.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1377: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setSettings(ClientSettings)` indirectly mutates container `this.server.config.parameters` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1375.           }
+  1376.           forceStream = settings.getViewDistance() != this.settings.getViewDistance()
+  1377. >                 && settings.getViewDistance() + 1 <= server.getViewDistance();
+  1378.           this.settings = settings;
+  1379.           metadata.set(MetadataIndex.PLAYER_SKIN_PARTS, settings.getSkinFlags());
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1373: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.setSettings(ClientSettings)` indirectly reads without synchronization from container `this.metadata.map` via call to `get`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1371.               EventFactory.getInstance().callEvent(new PlayerLocaleChangeEvent(this, newLocale));
+  1372.           }
+  1373. >         if (settings.getMainHand() != getMainHand().ordinal()) {
+  1374.               EventFactory.getInstance().callEvent(new PlayerChangedMainHandEvent(this, settings.getMainHand() == 0 ? MainHand.LEFT : MainHand.RIGHT));
+  1375.           }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1379: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setSettings(ClientSettings)` indirectly mutates container `this.metadata.changes` via call to `add` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1377.                   && settings.getViewDistance() + 1 <= server.getViewDistance();
+  1378.           this.settings = settings;
+  1379. >         metadata.set(MetadataIndex.PLAYER_SKIN_PARTS, settings.getSkinFlags());
+  1380.           metadata.set(MetadataIndex.PLAYER_MAIN_HAND, settings.getMainHand());
+  1381.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1638: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setSneaking(boolean)` indirectly mutates container `this.metadata.changes` via call to `add` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1636.           }
+  1637.   
+  1638. >         metadata.setBit(MetadataIndex.STATUS, StatusFlags.SNEAKING, sneak);
+  1639.       }
+  1640.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1860: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.setSpectatorTarget(Entity)` indirectly reads with synchronization from `this.boundingBox`. Potentially races with unsynchronized write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1858.       @Override
+  1859.       public void setSpectatorTarget(Entity entity) {
+  1860. >         teleport(entity.getLocation(), PlayerTeleportEvent.TeleportCause.SPECTATE);
+  1861.           spectating = entity;
+  1862.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1653: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setSprinting(boolean)` indirectly mutates container `this.metadata.changes` via call to `add` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1651.           }
+  1652.   
+  1653. >         metadata.setBit(MetadataIndex.STATUS, StatusFlags.SPRINTING, sprinting);
+  1654.       }
+  1655.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:523: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setUsageItem(ItemStack)` writes to field `this.usageItem` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  521.        */
+  522.       @Getter
+  523. >     @Setter
+  524.       private ItemStack usageItem;
+  525.       @Getter
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1598: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setUsageTime(int)` writes to field `this.startingUsageTime` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1596.   
+  1597.       public void setUsageTime(int usageTime) {
+  1598. >         startingUsageTime = usageTime;
+  1599.           this.usageTime = usageTime;
+  1600.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1599: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setUsageTime(int)` writes to field `this.usageTime` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1597.       public void setUsageTime(int usageTime) {
+  1598.           startingUsageTime = usageTime;
+  1599. >         this.usageTime = usageTime;
+  1600.       }
+  1601.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1358: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.setVelocity(Vector)` indirectly writes to field `this.velocityChanged` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1356.           if (!event.isCancelled()) {
+  1357.               velocity = event.getVelocity();
+  1358. >             super.setVelocity(velocity);
+  1359.               session.send(new EntityVelocityMessage(getEntityId(), velocity));
+  1360.           }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3104: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean GlowPlayer.setWindowProperty(InventoryView$Property,int)` indirectly reads without synchronization from `this.openInventory`. Potentially races with write in method `GlowPlayer.teleport(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3102.       @Override
+  3103.       public boolean setWindowProperty(Property prop, int value) {
+  3104. >         if (!super.setWindowProperty(prop, value)) {
+  3105.               return false;
+  3106.           }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3289: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.showPlayer(Player)` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3287.           session.send(new UserListItemMessage(UserListItemMessage.Action.ADD_PLAYER, ((GlowPlayer)
+  3288.                   player)
+  3289. >                 .getUserListEntry()));
+  3290.       }
+  3291.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:3294: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.showPlayer(Plugin,Player)` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  3292.       @Override
+  3293.       public void showPlayer(Plugin plugin, Player player) {
+  3294. >         showPlayer(player); // call old
+  3295.       }
+  3296.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2701: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.showTitle(net.md_5.bungee.api.chat.BaseComponent[])` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2699.       @Override
+  2700.       public void showTitle(BaseComponent[] title) {
+  2701. >         sendTitle(new Title(title));
+  2702.       }
+  2703.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2712: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.showTitle(net.md_5.bungee.api.chat.BaseComponent[],net.md_5.bungee.api.chat.BaseComponent[],int,int,int)` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2710.       public void showTitle(BaseComponent[] title, BaseComponent[] subtitle, int fadeInTicks,
+  2711.               int stayTicks, int fadeOutTicks) {
+  2712. >         sendTitle(new Title(title, subtitle, fadeInTicks, stayTicks, fadeOutTicks));
+  2713.       }
+  2714.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2706: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.showTitle(BaseComponent)` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2704.       @Override
+  2705.       public void showTitle(BaseComponent title) {
+  2706. >         sendTitle(new Title(title));
+  2707.       }
+  2708.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2718: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void GlowPlayer.showTitle(BaseComponent,BaseComponent,int,int,int)` indirectly mutates container `object` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2716.       public void showTitle(BaseComponent title, BaseComponent subtitle, int fadeInTicks,
+  2717.               int stayTicks, int fadeOutTicks) {
+  2718. >         sendTitle(new Title(title, subtitle, fadeInTicks, stayTicks, fadeOutTicks));
+  2719.       }
+  2720.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2157: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.spawnParticle(Particle,double,double,double,int)` indirectly reads without synchronization from `this.world`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2155.       @Override
+  2156.       public void spawnParticle(Particle particle, double x, double y, double z, int count) {
+  2157. >         spawnParticle(particle, x, y, z, count, null);
+  2158.       }
+  2159.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2180: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.spawnParticle(Particle,double,double,double,int,double,double,double)` indirectly reads without synchronization from `this.world`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2178.       public void spawnParticle(Particle particle, double x, double y, double z, int count,
+  2179.               double offsetX, double offsetY, double offsetZ) {
+  2180. >         spawnParticle(particle, x, y, z, count, offsetX, offsetY, offsetZ, 1, null);
+  2181.       }
+  2182.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2204: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.spawnParticle(Particle,double,double,double,int,double,double,double,double)` indirectly reads without synchronization from `this.world`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2202.       public void spawnParticle(Particle particle, double x, double y, double z, int count,
+  2203.               double offsetX, double offsetY, double offsetZ, double extra) {
+  2204. >         spawnParticle(particle, x, y, z, count, offsetX, offsetY, offsetZ, extra, null);
+  2205.       }
+  2206.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2227: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.spawnParticle(Particle,double,double,double,int,double,double,double,double,Object)` reads without synchronization from `this.world`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2225.       public <T> void spawnParticle(Particle particle, double x, double y, double z, int count,
+  2226.               double offsetX, double offsetY, double offsetZ, double extra, T data) {
+  2227. >         spawnParticle(particle, new Location(world, x, y, z), count, offsetX, offsetY, offsetZ,
+  2228.                   extra, data);
+  2229.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2192: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.spawnParticle(Particle,double,double,double,int,double,double,double,Object)` indirectly reads without synchronization from `this.world`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2190.       public <T> void spawnParticle(Particle particle, double x, double y, double z, int count,
+  2191.               double offsetX, double offsetY, double offsetZ, T data) {
+  2192. >         spawnParticle(particle, x, y, z, count, offsetX, offsetY, offsetY, 1, data);
+  2193.       }
+  2194.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2168: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void GlowPlayer.spawnParticle(Particle,double,double,double,int,Object)` indirectly reads without synchronization from `this.world`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2166.       public <T> void spawnParticle(Particle particle, double x, double y, double z, int count,
+  2167.               T data) {
+  2168. >         spawnParticle(particle, x, y, z, count, 0, 0, 0, 1, data);
+  2169.       }
+  2170.   
+
+src/main/java/net/glowstone/entity/GlowEntity.java:504: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean GlowEntity.teleport(Location)` writes to field `this.teleported` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  502.           }
+  503.           setRawLocation(location, false);
+  504. >         teleported = true;
+  505.           return true;
+  506.       }
+
+src/main/java/net/glowstone/entity/GlowEntity.java:503: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean GlowEntity.teleport(Location)` indirectly reads without synchronization from `this.boundingBox`. Potentially races with write in method `GlowEntity.setBoundingBox(...)`.
+ Reporting because this access may occur on a background thread.
+  501.               worldLock.writeLock().unlock();
+  502.           }
+  503. >         setRawLocation(location, false);
+  504.           teleported = true;
+  505.           return true;
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1940: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean GlowPlayer.teleport(Location)` indirectly reads with synchronization from `this.boundingBox`. Potentially races with unsynchronized write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1938.       @Override
+  1939.       public boolean teleport(Location location) {
+  1940. >         return teleport(location, TeleportCause.UNKNOWN);
+  1941.       }
+  1942.   
+
+src/main/java/net/glowstone/entity/monster/GlowBoss.java:22: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean GlowBoss.teleport(Location)` indirectly reads without synchronization from `this.boundingBox`. Potentially races with write in method `GlowBoss.remove()`.
+ Reporting because this access may occur on a background thread.
+  20.       public boolean teleport(Location location) {
+  21.           World oldWorld = world;
+  22. >         boolean result = super.teleport(location);
+  23.           worldLock.readLock().lock();
+  24.           try {
+
+src/main/java/net/glowstone/entity/monster/GlowBoss.java:21: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean GlowBoss.teleport(Location)` reads without synchronization from `this.world`. Potentially races with write in method `GlowBoss.teleport(...)`.
+ Reporting because this access may occur on a background thread.
+  19.       @Override
+  20.       public boolean teleport(Location location) {
+  21. >         World oldWorld = world;
+  22.           boolean result = super.teleport(location);
+  23.           worldLock.readLock().lock();
+
+src/main/java/net/glowstone/entity/GlowEntity.java:515: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean GlowEntity.teleport(Location,PlayerTeleportEvent$TeleportCause)` indirectly writes to field `this.fallDistance` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  513.       @Override
+  514.       public boolean teleport(Location location, TeleportCause cause) {
+  515. >         return teleport(location);
+  516.       }
+  517.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1960: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean GlowPlayer.teleport(Location,PlayerTeleportEvent$TeleportCause)` indirectly reads with synchronization from `this.boundingBox`. Potentially races with unsynchronized write in method `GlowPlayer.pulse()`.
+ Reporting because this access may occur on a background thread.
+  1958.           try {
+  1959.               if (location.getWorld() != world) {
+  1960. >                 spawnAt(location);
+  1961.               } else {
+  1962.                   world.getEntityManager().move(this, location);
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1972: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean GlowPlayer.teleport(Location,PlayerTeleportEvent$TeleportCause)` writes to field `this.teleportedTo` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  1970.           }
+  1971.   
+  1972. >         teleportedTo = location.clone();
+  1973.           return true;
+  1974.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1955: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean GlowPlayer.teleport(Location,PlayerTeleportEvent$TeleportCause)` indirectly reads without synchronization from `this.world`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because this access may occur on a background thread.
+  1953.               }
+  1954.               location = event.getTo();
+  1955. >             closeInventory();
+  1956.           }
+  1957.           worldLock.writeLock().lock();
+
+src/main/java/net/glowstone/entity/GlowEntity.java:510: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean GlowEntity.teleport(Entity)` indirectly writes to field `this.fallDistance` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  508.       @Override
+  509.       public boolean teleport(Entity destination) {
+  510. >         return teleport(destination.getLocation());
+  511.       }
+  512.   
+
+src/main/java/net/glowstone/entity/GlowEntity.java:520: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean GlowEntity.teleport(Entity,PlayerTeleportEvent$TeleportCause)` indirectly writes to field `this.fallDistance` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  518.       @Override
+  519.       public boolean teleport(Entity destination, TeleportCause cause) {
+  520. >         return teleport(destination.getLocation(), cause);
+  521.       }
+  522.   
+
+src/main/java/net/glowstone/entity/GlowEntity.java:954: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean GlowEntity.teleportToEnd()` indirectly writes to field `this.fallDistance` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  952.           target = event.getTo();
+  953.   
+  954. >         teleport(target);
+  955.           return true;
+  956.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2029: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean GlowPlayer.teleportToEnd()` indirectly reads without synchronization from `this.boundingBox`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2027.           target = event.getTo();
+  2028.   
+  2029. >         spawnAt(target);
+  2030.           teleported = true;
+  2031.   
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2030: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean GlowPlayer.teleportToEnd()` writes to field `this.teleported` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2028.   
+  2029.           spawnAt(target);
+  2030. >         teleported = true;
+  2031.   
+  2032.           awardAchievement(Achievement.END_PORTAL, false);
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2008: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean GlowPlayer.teleportToEnd()` indirectly mutates container `this.server.config.parameters` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2006.       @Override
+  2007.       protected boolean teleportToEnd() {
+  2008. >         if (!server.getAllowEnd()) {
+  2009.               return false;
+  2010.           }
+
+src/main/java/net/glowstone/entity/GlowEntity.java:920: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean GlowEntity.teleportToSpawn()` indirectly writes to field `this.fallDistance` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  918.           target = event.getTo();
+  919.   
+  920. >         teleport(target);
+  921.           return true;
+  922.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1987: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean GlowPlayer.teleportToSpawn()` indirectly reads without synchronization from `this.bedSpawn`. Potentially races with write in method `GlowPlayer.respawn()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1985.       @Override
+  1986.       protected boolean teleportToSpawn() {
+  1987. >         Location target = getBedSpawnLocation();
+  1988.           if (target == null) {
+  1989.               target = server.getWorlds().get(0).getSpawnLocation();
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2000: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean GlowPlayer.teleportToSpawn()` writes to field `this.teleported` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1998.   
+  1999.           spawnAt(target);
+  2000. >         teleported = true;
+  2001.   
+  2002.           awardAchievement(Achievement.THE_END, false);
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:2002: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean GlowPlayer.teleportToSpawn()` indirectly mutates container `this.server.config.parameters` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  2000.           teleported = true;
+  2001.   
+  2002. >         awardAchievement(Achievement.THE_END, false);
+  2003.           return true;
+  2004.       }
+
+src/main/java/net/glowstone/entity/GlowPlayer.java:1999: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean GlowPlayer.teleportToSpawn()` indirectly reads without synchronization from `this.boundingBox`. Potentially races with write in method `GlowPlayer.pulse()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  1997.           target = event.getTo();
+  1998.   
+  1999. >         spawnAt(target);
+  2000.           teleported = true;
+  2001.   
+
+Summary of the reports
+
+      THREAD_SAFETY_VIOLATION: 220
+             NULL_DEREFERENCE: 91
+                RESOURCE_LEAK: 20
+  INEFFICIENT_KEYSET_ITERATOR: 1

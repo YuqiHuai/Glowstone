@@ -1,7 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.glowstone</groupId>
   <artifactId>glowstone</artifactId>
@@ -90,14 +88,14 @@
       <artifactId>fast-uuid</artifactId>
       <version>0.1</version>
     </dependency>
-    <!-- NonNls annotation: https://mvnrepository.com/artifact/org.jetbrains/annotations -->
+    
     <dependency>
       <groupId>org.jetbrains</groupId>
       <artifactId>annotations</artifactId>
       <version>18.0.0</version>
       <scope>provided</scope>
     </dependency>
-    <!-- Kotlin -->
+    
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-stdlib</artifactId>
@@ -108,7 +106,7 @@
       <artifactId>kotlin-reflect</artifactId>
       <version>${kotlin.version}</version>
     </dependency>
-    <!-- OpenCL -->
+    
     <dependency>
       <groupId>org.jogamp.gluegen</groupId>
       <artifactId>gluegen-rt-main</artifactId>
@@ -119,7 +117,7 @@
       <artifactId>jocl-main</artifactId>
       <version>2.3.2</version>
     </dependency>
-    <!-- Maven stuff -->
+    
     <dependency>
       <groupId>com.tobedevoured.naether</groupId>
       <artifactId>core</artifactId>
@@ -136,7 +134,7 @@
       <artifactId>maven-artifact</artifactId>
       <version>3.6.3</version>
     </dependency>
-    <!-- Tests -->
+    
     <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
@@ -314,7 +312,7 @@
               <Launcher-Agent-Class>net.glowstone.util.ClassPathAgent</Launcher-Agent-Class>
               <Main-Class>net.glowstone.GlowServer</Main-Class>
               <Implementation-Title>${project.name}</Implementation-Title>
-              <!--suppress UnresolvedMavenProperty -->
+              
               <Implementation-Version>${project.version}.${describe}</Implementation-Version>
               <Implementation-Vendor>${maven.build.timestamp}</Implementation-Vendor>
               <Specification-Title>Bukkit</Specification-Title>
@@ -471,7 +469,25 @@
         </plugins>
       </build>
     </profile>
-  </profiles>
+  <profile>
+      <id>infer-capture</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.8.0</version>
+            <configuration>
+              <compilerId>javac</compilerId>
+              <forceJavacCompilerUse>true</forceJavacCompilerUse>
+              <fork>true</fork>
+              <executable>/usr/local/Cellar/infer/0.17.0/lib/infer/infer/bin/infer</executable>
+              
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile></profiles>
 
   <reporting>
     <plugins>
